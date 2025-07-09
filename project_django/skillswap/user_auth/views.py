@@ -1,14 +1,15 @@
-
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import LoginForm,RegistrationForm
+from django.contrib.auth.forms import  LoginForm,RegistrationForm
 #from django.contrib.auth.models import UserAuthenticate
 from django.contrib import messages
-from django.urls import reverse
 
 def index(request):
     return render(request,'index.html')
+
+def user_profile(request):
+    return render(request,'profile.html')
 
 def user_signup(request):
     if request.method == 'POST':
@@ -22,7 +23,7 @@ def user_signup(request):
         form = RegistrationForm()
     return render(request, 'templates/register.html', {'form': form})
 
-def user_login(request):
+def User_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -42,7 +43,7 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-def user_logout(request):
+def User_logout(request):
     logout(request)
     messages.info(request, "You have been logged out.")
     return redirect('login')
