@@ -6,6 +6,7 @@ class UserDetail(models.Model):
     description = models.TextField(blank=True)
     skills_offered=models.CharField(max_length=200, blank=True)
     skills_needed= models.CharField(max_length=200, blank=True)
+    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
