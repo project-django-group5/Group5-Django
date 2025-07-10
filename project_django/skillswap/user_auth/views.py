@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -75,4 +73,3 @@ def User_logout(request):
 @login_required
 def user_profile(request):
     return render(request,'user_auth/profile.html')
->>>>>>> origin/dev
