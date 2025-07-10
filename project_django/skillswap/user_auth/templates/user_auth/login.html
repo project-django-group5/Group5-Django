@@ -1,5 +1,6 @@
 
-{% extends 'user_auth/index.html' %}
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <h2 class="mb-4">Login</h2>
 
@@ -14,6 +15,7 @@
 
     {{ form.as_p }}
 
-    <button type="submit" class="btn btn-primary">Log In</button>
+    <input type="submit" value="Log In">
+
 </form>
 {% endblock %}
