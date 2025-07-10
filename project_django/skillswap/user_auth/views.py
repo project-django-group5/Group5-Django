@@ -11,49 +11,57 @@ def index(request):
 
 def user_signup(request):
     if request.method == 'POST':
-    
         user_form = UserForm(request.POST)
-        profile_form = RegistrationForm(request.POST)
+        profile_form = RegistrationForm(request.POST, request.FILES)
 
         if user_form.is_valid() and profile_form.is_valid():
-       
-                user = user_form.save(commit=False)
-                user.set_password(user_form.cleaned_data['password']) 
-                user.save()
-                profile = profile_form.save(commit=False)
-                profile.user = user
-                profile.save()
+            user = user_form.save(commit=False)
+            user.set_password(user_form.cleaned_data['password']) 
+            user.save()
 
-                messages.error(request, "Invalid login details.")
-                return render(request, 'user_auth/login.html')
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+
+            messages.success(request, "Registration successful. Please log in.")
+            return redirect('login')  
+
         else:
-                user_form = UserForm()
-                profile_form = RegistrationForm()
+            messages.error(request, "Please correct the errors below.")
     else:
-        form = RegistrationForm()
-    return render(request, 'user_auth/register.html', {'form': form})
+        user_form = UserForm()
+        profile_form = RegistrationForm()
+
+    return render(request, 'user_auth/register.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
+
 
 
 
 def User_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        form = LoginForm(request, data=request.POST)
 
-        user = authenticate(username=username,password=password)
-        if user:
-            if user.is_active:
-               login(request,user)
-               return redirect('index')
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                messages.success(request, f"Welcome {username}!")
+                return redirect('index')
             else:
-                return HttpResponse("Account Not Active")
+                messages.error(request, "Invalid username or password.")
         else:
-            print("someone tried to login and failed")
-            print('username:{} and password {}'.format(username,password))
-            return HttpResponse("Invalid login details")
+            messages.error(request, "Invalid username or password.")
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    
+    return render(request, 'user_auth/login.html', {'form': form})
+
 
 @login_required
 def User_logout(request):
