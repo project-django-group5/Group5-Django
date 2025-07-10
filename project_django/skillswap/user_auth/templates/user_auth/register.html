@@ -1,0 +1,29 @@
+
+{% extends 'user_auth/index.html' %}
+{% block content %}
+<h2 class="mb-4">Register</h2>
+
+<form method="post" enctype="multipart/form-data" class="w-75 mx-auto">
+    {% csrf_token %}
+
+    {% if user_form.errors %}
+        <div class="alert alert-danger">
+            {{ user_form.errors }}
+        </div>
+    {% endif %}
+    {% if profile_form.errors %}
+        <div class="alert alert-danger">
+            {{ profile_form.errors }}
+        </div>
+    {% endif %}
+
+    <h5>Account Info</h5>
+    {{ user_form.as_p }}
+
+    <h5 class="mt-4">Profile Info</h5>
+    {{ profile_form.as_p }}
+
+    <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+</form>
+{% endblock %}
+
