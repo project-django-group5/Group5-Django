@@ -2,13 +2,62 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<h2>Your Profile</h2>
-  <p><strong>Username:</strong> {{ user.username }}</p>
-  <p><strong>Email:</strong> {{ user.email }}</p>
-  {% if user.userdetail.profile_pic %}
-    <img src="{{ user.userdetail.profile_pic.url }}" alt="Profile photo" width="150" />
-  {% else %}
-    <p>No profile photo.</p>
-  {% endif %}
+  <div class="container py-4">
+  <div class="card shadow-lg p-4">
+    <div class="d-flex flex-column flex-md-row align-items-center">
+    {% if profile.profile_pic %}
+        <img src="{{profile.profile_pic.url }}" alt="Profile photo" width="150" />
+    {% else %}
+        <p>🧑‍🎓</p>
+    {% endif %}    
+     <div>
+        <h3>{{ user.username }}</h3>
+        <p class="text-muted">{{ user.profile.bio }}</p>
+        <p><strong>Location:</strong> {{ user.profile.location }}</p>
+        <p><strong>Available:</strong> {{ user.profile.availability }}</p>
+        {% comment %} {% if user != request.user %} {% endcomment %}
+          {% comment %} <a href="{% url 'message_user' user.id %}" class="btn btn-outline-primary">Contact</a> {% endcomment %}
+        {% comment %} {% else %}
+          <a href="{% url 'edit_profile' %}" class="btn btn-secondary">Edit Profile</a>
+        {% endif %} {% endcomment %}
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="text-success">Skills Offered</h5>
+        <ul>
+          {% for skill in user.skills_offered.all %}
+            <li>{{ skill.title }} ({{ skill.category }})</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h5 class="text-primary">Skills Wanted</h5>
+        <ul>
+          {% for skill in user.skills_requested.all %}
+            <li>{{ skill.title }} ({{ skill.category }})</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <h5 class="mt-4">⭐ Reviews</h5>
+    {% for review in user.reviews_received.all %}
+      <div class="border rounded p-3 mb-2">
+        <strong>{{ review.reviewer.username }}</strong> 
+        - <span class="text-warning">{{ review.rating }} ★</span><br>
+        <p class="mb-0">{{ review.comment }}</p>
+      </div>
+    {% empty %}
+      <p>No reviews yet.</p>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}
 
