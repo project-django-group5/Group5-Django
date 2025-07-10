@@ -8,7 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    email = forms.EmailField(request= True)
+    email = forms.EmailField(required= True)
 
     class Meta():
         model = User
@@ -28,3 +28,5 @@ class RegistrationForm(forms.ModelForm):
 class LoginForm(AuthenticationForm):
      username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
      password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+     
