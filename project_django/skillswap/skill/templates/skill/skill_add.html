@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Skill Create | Skillswap {% endblock  %}
+{% block content %}
+<div class=" w-responsive mx-auto mb-5 w-75">
+    <div class="jumbotron">
+        <h2 class="text-center">Post a New Skill</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</div>
+{% endblock  %}
