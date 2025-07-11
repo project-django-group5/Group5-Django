@@ -73,3 +73,20 @@ def User_logout(request):
 @login_required
 def user_profile(request):
     return render(request,'user_auth/profile.html')
+
+@login_required
+def edit_profile(request):
+    user_detail = request.user.userdetail
+
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST, request.FILES, instance=user_detail)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect('profile')
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = RegistrationForm(instance=user_detail)
+
+    return render(request, 'user_auth/edit_profile.html', {'detail_form': form})
