@@ -26,6 +26,8 @@ urlpatterns = [
     path('about/', core_views.about, name='about'),
 
     path("", include("user_auth.urls")),
+
+    path("", include("skill.urls")),
 ]
 
 if settings.DEBUG:
