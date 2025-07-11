@@ -24,7 +24,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', core_views.home, name='home'),
     path('about/', core_views.about, name='about'),
+
     path("", include("user_auth.urls")),
+
     path("", include("skill.urls")),
 ]
 
