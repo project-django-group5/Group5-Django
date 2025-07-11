@@ -15,6 +15,8 @@ class Skill(models.Model):
     location = models.CharField(max_length=200, blank=True)
     skill_type = models.CharField(choices=TYPE_CHOICE, max_length=10)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return self.title
