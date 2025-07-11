@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Skill List | Skillswap {% endblock  %}
+{% block content %}
+<div class=" w-responsive mx-auto mb-5 w-75">
+    <div class="jumbotron">
+        <h2 class="text-center">Skill Listings</h2>
+        <a href="{% url 'skill_add' %}">Post a Skill</a>
+        <ul>
+            {% for skill in skills %}
+            <li>
+                <strong>{{ skill.title }}</strong> ({{ skill.get_skill_type_display }})<br>
+                Category: {{ skill.category }}<br>
+                Descriptio: {{ skill.description }}
+                By: {{ skill.user.username }}<br>
+                Availability: {{ skill.availability }}<br>
+                Location: {{ skill.location }}
+            </li>
+            {% endfor %}
+        </ul>
+{% endblock %}
