@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Skill Details | SkillSwap{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header ">
+            <h2 class="mb-0">{{ skill.title }}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Category:</strong> {{ skill.category }}</p>
+            <p><strong>Description:</strong><br>{{ skill.description|linebreaksbr }}</p>
+            <p><strong>Availability:</strong> {{ skill.availability }}</p>
+            <p><strong>Location:</strong> {{ skill.location|default:"Not specified" }}</p>
+            <p><strong>Type:</strong>
+                <span class="badge badge-info">{{ skill.get_skill_type_display }}</span>
+            </p>
+            <hr>
+            <p><strong>Posted by:</strong> {{ skill.user.username }}</p>
+            <p><strong>Created:</strong> {{ skill.created|date:"F j, Y" }}</p>
+            <a href="#" class="btn btn-success  mt-3">
+                📧 Contact Me
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 def skill_list(request):
     skill= Skill.objects.all()
     return render(request, 'skill/skill_list.html',{'skills': skill})
+
 @login_required
 def skill_add(request):
     if request.method =="POST":
@@ -27,3 +28,5 @@ def skill_add(request):
 # def skill_detail(request, skill_id):
 #     skill = get_object_or_404(Skill, id= skill_id)
 #     return render(request, 'skill/skill_detail.html', {'skill': skill}) 
+
+
