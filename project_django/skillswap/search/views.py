@@ -37,3 +37,8 @@ def skill_search(request):
         'all_types': all_types,
         'all_availabilities': all_availabilities,
     })
+
+
+def skill_detail(request, pk):
+    skill = get_object_or_404(Skill)
+    return render(request, 'skill/skill_detail.html', {'skill': skill})
