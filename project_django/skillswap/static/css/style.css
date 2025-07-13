@@ -1,19 +1,18 @@
 body {
-    font-family: 'Josefin Sans', sans-serif;  
-    margin: 0;
-    padding: 0;
-
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
 body.dark-mode {
   background-color: #121212;
   color: #f1f1f1;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body.dark-mode .navbar , 
+body.dark-mode .navbar,
 body.dark-mode .d-flex,
-body.dark-mode .container
-{
+body.dark-mode .container {
   background-color: #1e1e1e !important;
   color: #ffffff !important;
   border-color: #333 !important;
@@ -47,6 +46,7 @@ body.dark-mode .emoji-toggle {
   border-radius: 0.5rem;
   padding: 4px 8px;
 }
+
 body.dark-mode .emoji-toggle:hover {
   background-color: #444;
 }
@@ -67,6 +67,7 @@ body.dark-mode .emoji-toggle:hover {
   border-color: #90caf9;
   color: #90caf9;
 }
+
 .dark-mode .btn-outline-primary:hover {
   background-color: #90caf9;
   color: #000;
@@ -77,36 +78,50 @@ body.dark-mode .emoji-toggle:hover {
   border-color: #388e3c;
 }
 
-
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
 }
 
 header nav ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 header nav ul li {
-    display: inline;
-    margin-right: 20px;
+  display: inline;
+  margin-right: 20px;
 }
 
 header nav ul li a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 2px 0;
-    position:sticky ;
-    width: 100%;
-    bottom: 0;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  width: 100%;
 }
 
+.stylish-select {
+  border-radius: 12px;
+  border: 2px solid #ced4da;
+  padding: 10px;
+  height: auto;
+  min-height: 45px;
+  width: 100%;  /* takes full width of parent */
+  font-size: 1rem;
+}
+.stylish-select:focus {
+    border-color: #5e60ce;
+    box-shadow: 0 0 0 0.2rem rgba(94, 96, 206, 0.25);
+}
+
+.form-label {
+    color: #4a148c;
+    font-weight: 600;
+}
