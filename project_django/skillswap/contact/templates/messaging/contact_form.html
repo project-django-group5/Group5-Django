@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Contact Form</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <div>
+    <label for="{{ form.sender.id_for_label }}">Your Name:</label><br>
+    {{ form.sender }}
+    {{ form.sender.errors }}
+  </div>
+
+  <div>
+    <label for="{{ form.email.id_for_label }}">Your Email:</label><br>
+    {{ form.email }}
+    {{ form.email.errors }}
+  </div>
+
+  <div>
+    <label for="{{ form.receiver.id_for_label }}">Receiver's Email:</label><br>
+    {{ form.receiver }}
+    {{ form.receiver.errors }}
+  </div>
+
+  <div>
+    <label for="{{ form.subject.id_for_label }}">Subject:</label><br>
+    {{ form.subject }}
+    {{ form.subject.errors }}
+  </div>
+
+  <div>
+    <label for="{{ form.message.id_for_label }}">Message:</label><br>
+    {{ form.message }}
+    {{ form.message.errors }}
+  </div>
+
+  <button type="submit">Send Message</button>
+</form>
+
+{% endblock %}
