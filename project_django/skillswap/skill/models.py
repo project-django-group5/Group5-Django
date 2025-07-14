@@ -16,7 +16,8 @@ class Skill(models.Model):
     skill_type = models.CharField(choices=TYPE_CHOICE, max_length=10)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-    
+    skill_image = models.ImageField(upload_to='skill_images/', blank=True, null=True)
+
 
     def __str__(self):
         return self.title

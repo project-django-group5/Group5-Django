@@ -1,32 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
-{% block title %}Skill Create | Skillswap{% endblock %}
+{% block title %}Skill Create | SkillSwap{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Post a New Skill</h2>
+    <h2 class="text-gradient">🎯 Post a New Skill</h2>
     <a href="{% url 'skill_list' %}" class="btn btn-outline-secondary">← Back to Listings</a>
   </div>
 
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <form method="post" novalidate>
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-body p-4">
+      <form method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
+        
         {% for field in form %}
-          <div class="form-group mb-3">
-            <label for="{{ field.id_for_label }}" class="font-weight-bold">{{ field.label }}</label>
-            {{ field }}
+          <div class="form-group mb-4">
+            <label for="{{ field.id_for_label }}" class="fw-bold">{{ field.label }}</label>
+            
+            {% if field.name == "skill_image" %}
+              <div class="mb-2">
+                <div class="border rounded p-3 bg-light d-flex align-items-center justify-content-center" style="min-height: 150px;">
+                  <span class="text-muted">📸 Upload an image representing your skill</span>
+                </div>
+              </div>
+            {% endif %}
+            
+            {{ field|add_class:"form-control" }}
+            
             {% if field.help_text %}
               <small class="form-text text-muted">{{ field.help_text }}</small>
             {% endif %}
+            
             {% if field.errors %}
-              <div class="text-danger">{{ field.errors }}</div>
+              <div class="text-danger small mt-1">{{ field.errors }}</div>
             {% endif %}
           </div>
         {% endfor %}
-        <button type="submit" class="btn btn-success btn-block">Submit Skill</button>
+
+        <button type="submit" class="btn btn-success w-100 mt-2">
+          ✅ Submit Skill
+        </button>
       </form>
     </div>
   </div>
