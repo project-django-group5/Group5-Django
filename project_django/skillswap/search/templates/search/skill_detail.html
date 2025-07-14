@@ -20,8 +20,13 @@
             <hr>
             <p><strong>Posted by:</strong> {{ skill.user.username }}</p>
             <p><strong>Created:</strong> {{ skill.created|date:"F j, Y" }}</p>
-            <a href="#" class="btn btn-success  mt-3">
+
+            <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-success  mt-3">
                 📧 Contact Me
+            </a>
+            <br>
+            <a href="javascript:history.back()" class="btn btn-secondary mt-3 ml-2">
+                🔙 Back
             </a>
         </div>
     </div>
