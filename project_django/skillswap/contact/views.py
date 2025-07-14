@@ -21,7 +21,7 @@ def contact_form(request, receiver_id):
         form = ContactForm(initial={
             'sender':request.user.username,
             'email':request.user.email,
-            'receiver':receiver.email'
+            'receiver':receiver.email
 
         })
 
