@@ -37,7 +37,11 @@
     {{ form.message.errors }}
   </div>
 
+  <form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
   <button type="submit">Send Message</button>
+  </form>
 </form>
 
 {% endblock %}
