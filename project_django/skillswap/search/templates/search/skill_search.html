@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% block title %} Skill search | SkillSwap{% endblock  %}
 {% block content %}
 <div class="py-5" style="background: linear-gradient(to right, #fefcea, #f1daff);">
   <div class="container bg-white p-5 rounded-4 shadow-lg">
@@ -54,7 +54,7 @@
           <label class="form-label font-weight-bold">Availability</label>
           <select name="availability" class="form-control rounded-pill stylish-select">
             <option value="">All</option>
-            {% for avail in all_availability %}
+            {% for avail in all_availabilities %}
               <option value="{{ avail }}" {% if request.GET.availability == avail %}selected{% endif %}>{{ avail }}</option>
             {% endfor %}
           </select>

@@ -26,7 +26,7 @@ def skill_search(request):
 
     skills = skills.filter(filters)
 
-
+    all_titles = Skill.objects.values_list('title', flat=True).distinct()
     all_categories = Skill.objects.values_list('category', flat=True).distinct()
     all_locations = Skill.objects.values_list('location', flat=True).distinct()
     all_types = Skill.objects.values_list('skill_type', flat=True).distinct()
@@ -34,6 +34,7 @@ def skill_search(request):
 
     return render(request, 'search/skill_search.html', {
         'skills': skills,
+        'all_titles':all_titles,
         'all_categories': all_categories,
         'all_locations': all_locations,
         'all_types': all_types,
