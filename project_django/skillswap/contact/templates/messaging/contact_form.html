@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
+
 {% block title %}Contact| SkillSwap{% endblock %}
  
 {% block content %}
@@ -22,7 +24,7 @@
             {% for field in form %}
               <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }}
+                {{ field|add_class:"form-control" }}
                 {% if field.help_text %}
                   <small class="form-text text-muted">{{ field.help_text }}</small>
                 {% endif %}
