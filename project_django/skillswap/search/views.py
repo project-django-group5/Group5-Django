@@ -26,6 +26,7 @@ def skill_search(request):
 
     skills = skills.filter(filters)
 
+
     all_categories = Skill.objects.values_list('category', flat=True).distinct()
     all_locations = Skill.objects.values_list('location', flat=True).distinct()
     all_types = Skill.objects.values_list('skill_type', flat=True).distinct()

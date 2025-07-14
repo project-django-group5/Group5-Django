@@ -4,9 +4,29 @@ from django.contrib.auth.models import User
 from .forms import ContactForm
 from .models import Contact
 
+# # @login_required
+# def contact_form(request):
+
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             contact = form.save(commit=False)
+#             contact.sender = request.user.username
+#             contact.email=request.user.email
+#             contact.save()
+#             return redirect('thank_you')
+#     else:
+#         form = ContactForm(initial={
+#             'sender':request.user.username,
+#             'email':request.user.email,
+
+#         })
+
+#     return render(request, 'messaging/contact_form.html', {'form': form})
+
 @login_required
-def contact_form(request, receiver_id):
-    receiver = get_object_or_404(User, pk=receiver_id)
+def contact_form(request, pk):
+    receiver = get_object_or_404(User, pk=pk)
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
