@@ -31,7 +31,7 @@ def skill_search(request):
     all_types = Skill.objects.values_list('skill_type', flat=True).distinct()
     all_availabilities = Skill.objects.values_list('availability', flat=True).distinct()
 
-    return render(request, 'skill/skill_search.html', {
+    return render(request, 'search/skill_search.html', {
         'skills': skills,
         'all_categories': all_categories,
         'all_locations': all_locations,
@@ -43,4 +43,4 @@ def skill_search(request):
 @login_required
 def skill_detail(request, pk):
     skill = get_object_or_404(Skill, pk=pk)
-    return render(request, 'skill/skill_detail.html', {'skill': skill})
+    return render(request, 'search/skill_detail.html', {'skill': skill})
