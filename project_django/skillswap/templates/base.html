@@ -33,11 +33,15 @@
                     <li><a class="navbar-brand" href="{% url 'home' %}">Home</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'skill_search' %}">Search</a></li>
+<<<<<<< HEAD
                     <li class="nav-item"><a class="nav-link" href="{% url 'skill_detail' %}">Skill Details</a></li>
+=======
+>>>>>>> a6e78ef4348b02ee8896b8830f14b85b7de16f76
                     <li class="nav-item"><a class="nav-link" href="{% url 'skill_list' %}">Skills List</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'skill_add' %}">Post a Skill</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">My Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact_form' %}">Contact Form</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>

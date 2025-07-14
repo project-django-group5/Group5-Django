@@ -42,5 +42,5 @@ def skill_search(request):
 
 @login_required
 def skill_detail(request, pk):
-    skill = get_object_or_404(Skill)
+    skill = get_object_or_404(Skill, pk=pk)
     return render(request, 'skill/skill_detail.html', {'skill': skill})
