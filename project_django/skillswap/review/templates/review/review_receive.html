@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Reviews for {{ user.username }}</h2>
+  {% if reviews %}
+    {% for review in reviews %}
+      <div class="card my-3 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ review.rating }}★ from {{ review.reviewer.username }}</h5>
+          <p class="card-text">{{ review.comment|linebreaks }}</p>
+          <small class="text-muted">{{ review.created_at|naturaltime }}</small>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No reviews yet for this user.</p>
+  {% endif %}
+</div>
+{% endblock %}
