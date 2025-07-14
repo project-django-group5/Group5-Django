@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from skill.models import Skill
+from django.contrib.auth.decorators import login_required
 
 def skill_search(request):
     title = request.GET.get('title')
@@ -39,6 +40,7 @@ def skill_search(request):
     })
 
 
+@login_required
 def skill_detail(request, pk):
     skill = get_object_or_404(Skill)
     return render(request, 'skill/skill_detail.html', {'skill': skill})
