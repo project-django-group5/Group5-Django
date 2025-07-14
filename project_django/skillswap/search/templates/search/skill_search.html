@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="py-5" style="background: linear-gradient(to right, #fefcea, #f1daff);">
+  <div class="container bg-white p-5 rounded-4 shadow-lg">
+    <h2 class="text-center text-primary fw-bold mb-3">🎯 Skill Search</h2>
+    <p class="text-center text-muted mb-4">
+      Find the skills you need. Share the skills you have. Connect with your community.
+    </p>
+
+    <form method="get" class="mb-5">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label font-weight-bold">Skill Type</label>
+          <select name="skill_type" class="form-control rounded-pill stylish-select">
+            <option value="">Choose any</option>
+            <option value="offer" {% if request.GET.skill_type == 'offer' %}selected{% endif %}>Offer</option>
+            <option value="request" {% if request.GET.skill_type == 'request' %}selected{% endif %}>Request</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label font-weight-bold">Category</label>
+          <select name="category" class="form-control rounded-pill stylish-select">
+            <option value="">All</option>
+            {% for cat in all_categories %}
+              <option value="{{ cat }}" {% if request.GET.category == cat %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label font-weight-bold">Title</label>
+          <select name="title" class="form-control rounded-pill stylish-select">
+            <option value="">All</option>
+            {% for t in all_titles %}
+              <option value="{{ t }}" {% if request.GET.title == t %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label font-weight-bold">Location</label>
+          <select name="location" class="form-control rounded-pill stylish-select">
+            <option value="">All</option>
+            {% for loc in all_locations %}
+              <option value="{{ loc }}" {% if request.GET.location == loc %}selected{% endif %}>{{ loc }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label font-weight-bold">Availability</label>
+          <select name="availability" class="form-control rounded-pill stylish-select">
+            <option value="">All</option>
+            {% for avail in all_availability %}
+              <option value="{{ avail }}" {% if request.GET.availability == avail %}selected{% endif %}>{{ avail }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">🔍 Search</button>
+        <a href="{% url 'skill_search' %}" class="btn btn-outline-secondary rounded-pill ml-2">♻️ Reset</a>
+      </div>
+    </form>
+    {% if request.GET %}
+      <div class="row">
+        {% for skill in skills %}
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm rounded-4 border-0 p-3">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <a href="{% url 'skill_detail' skill.pk %}" class="text-decoration-none text-primary">
+                    {{ skill.title }}
+                  </a>
+                </h5>
+                <p class="card-text text-muted">{{ skill.description|truncatewords:20 }}</p>
+                <div>
+                  <span class="badge badge-secondary">{{ skill.category }}</span>
+                  <span class="badge badge-info">{{ skill.skill_type }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="col-12">
+            <p class="text-center text-danger">No skills found matching your criteria.</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
+        <div class="card-body">
+          <i class="bi bi-leaf fs-1 text-primary mb-3"></i>
+          <h5 class="fw-bold">Grow Through Teaching</h5>
+          <p class="text-muted">Share your expertise and boost your skills by helping others.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
+        <div class="card-body">
+          <i class="bi bi-arrow-repeat fs-1 text-primary mb-3"></i>
+          <h5 class="fw-bold">Swap Skills Effortlessly</h5>
+          <p class="text-muted">Find partners based on interest, location, and availability.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
+        <div class="card-body">
+          <i class="bi bi-airplane fs-1 text-primary mb-3"></i>
+          <h5 class="fw-bold">Learn What Matters</h5>
+          <p class="text-muted">Get practical knowledge from real practitioners.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

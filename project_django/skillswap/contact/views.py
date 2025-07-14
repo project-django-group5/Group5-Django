@@ -5,8 +5,8 @@ from .forms import ContactForm
 from .models import Contact
 
 @login_required
-def contact_form(request, receiver_id):
-    receiver = get_object_or_404(User, pk=receiver_id)
+def contact_form(request, pk):
+    receiver = get_object_or_404(User, pk=pk)
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
