@@ -10,10 +10,11 @@ from django.contrib.auth.decorators import login_required
 def skill_list(request):
     skill= Skill.objects.all()
     return render(request, 'skill/skill_list.html',{'skills': skill})
+
 @login_required
 def skill_add(request):
     if request.method =="POST":
-        form= SkillForm(request.POST)
+        form= SkillForm(request.POST, request.FILES)
         if form.is_valid():
             skill=form.save(commit=False)
             skill.user= request.user

@@ -5,7 +5,7 @@ from .models import Skill
 class SkillForm(forms.ModelForm):
     class Meta:
         model = Skill
-        fields = ['title', 'category', 'description', 'availability', 'location', 'skill_type']
+        fields = ['title', 'category', 'description', 'availability', 'location', 'skill_type','skill_image']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
         }
