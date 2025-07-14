@@ -9,7 +9,6 @@
       Find the skills you need. Share the skills you have. Connect with your community.
     </p>
 
-    <!-- Search Form -->
     <form method="get" class="mb-5">
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -67,8 +66,6 @@
         <a href="{% url 'skill_search' %}" class="btn btn-outline-secondary rounded-pill ml-2">♻️ Reset</a>
       </div>
     </form>
-
-    <!-- Search Results -->
     {% if request.GET %}
       <div class="row">
         {% for skill in skills %}
@@ -98,7 +95,6 @@
   </div>
 </div>
 
-<!-- SkillSwap Features Section -->
 <div class="container my-5">
   <div class="row text-center">
     <div class="col-md-4 mb-4">
