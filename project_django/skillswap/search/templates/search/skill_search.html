@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load star_filters %}
 {% block title %} Skill search | SkillSwap{% endblock  %}
 {% block content %}
 <div class="py-5" style="background: linear-gradient(to right, #fefcea, #f1daff);">
@@ -82,7 +83,10 @@
                   <span class="badge badge-secondary">{{ skill.category }}</span>
                   <span class="badge badge-info">{{ skill.skill_type }}</span>
                 </div>
-                <p>Average Rating: {{ skill.average_rating|default:"No ratings yet" }}</p>
+                <p>
+                  Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
+                  ({{ skill.review_count }} reviews)
+                </p>
                 <p>Total Reviews: {{ skill.review_count }}</p>
               </div>
             </div>

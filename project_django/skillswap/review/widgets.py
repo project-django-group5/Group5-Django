@@ -6,7 +6,8 @@ from django.utils.safestring import mark_safe
 class StarRadioSelect(RadioSelect):
     def render(self, name, value, attrs=None, renderer=None):
         output = []
-        final_attrs = self.build_attrs(attrs, name=name)
+        final_attrs = self.build_attrs(self.attrs, attrs)
+        output = []
         for i in range(1, 6):
             checked = 'checked' if str(value) == str(i) else ''
             html = f'''

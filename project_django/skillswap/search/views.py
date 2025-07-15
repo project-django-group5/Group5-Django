@@ -53,7 +53,7 @@ def skill_detail(request, pk):
 
     reviews = Review.objects.filter(skill=skill).select_related('reviewer')
 
-    return render(request, 'skill/skill_detail.html', {
+    return render(request, 'search/skill_detail.html', {
         'skill': skill,
         'reviews': reviews
     })

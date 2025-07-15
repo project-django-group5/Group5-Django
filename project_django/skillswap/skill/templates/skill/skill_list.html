@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load star_filters %}
 {% block title %}Skill List | Skillswap{% endblock %}
 
 {% block content %}
@@ -32,24 +32,30 @@
           </ul>
           {% if skill.average_rating %}
           <div class="mb-2">
-            <strong>Rating:</strong>
-            <span class="text-warning">
-              {% for i in "12345" %}
-                {% if forloop.counter <= skill.average_rating|floatformat:"0" %}
-                  ★
-                {% else %}
-                  ☆
-                {% endif %}
-              {% endfor %}
-            </span>
+            <p>
+              Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
+              ({{ skill.review_count }} reviews)
+            </p>
             <small class="text-muted">({{ skill.review_count }} review{{ skill.review_count|pluralize }})</small>
           </div>
           {% else %}
           <div class="mb-2 text-muted">
             <small>No reviews yet</small>
           </div>
-        {% endif %}
-
+          {% endif %}
+          <div>
+            {% if user.is_authenticated %}
+              {% if user != skill.user %}
+                <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-sm btn-outline-primary">
+                  Leave a Review
+                </a>
+              {% endif %}
+            {% else %}
+              <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-sm btn-outline-primary">
+                Log in to Review
+              </a>
+            {% endif %}
+          </div>
           <div class="mt-auto">
             <a href="{% url 'skill_detail' skill.id %}" class="btn btn-outline-primary btn-sm btn-block">
               View Details

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load star_filters %}
 {% block content %}
 <div class="container py-4">
   <div class="card shadow-lg p-4">
@@ -32,7 +32,10 @@
             <p>Location: {{ skill.location }}</p>
             <p>Category: {{ skill.category }}</p>
             <p>Availability: {{ skill.availability }}</p>
-            <p>Average Rating: {{ skill.average_rating|default:"No ratings yet" }}</p>
+            <p>
+              Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
+              ({{ skill.review_count }} reviews)
+            </p>
             <p>Review Count: {{ skill.review_count }}</p>
         </div>
     {% empty %}
