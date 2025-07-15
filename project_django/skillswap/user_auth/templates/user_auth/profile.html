@@ -1,57 +1,69 @@
-
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-  <div class="container py-4">
+<div class="container py-4">
   <div class="card shadow-lg p-4">
-    <div class="d-flex flex-column flex-md-row align-items-center">
-    {% if user.userdetail.profile_pic %}
-        <img src="{{user.userdetail.profile_pic.url }}" alt="Profile photo" width="150" />
-    {% else %}
-        <p>🧑‍🎓</p>
-    {% endif %}    
-     <div>
-        <h3>{{ user.username }}</h3>
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p class="text-muted">{{ user.userdetail.description }}</p>
-        <p><strong>Location:</strong> {{ user.profile.location }}</p>
-        <p><strong>Available:</strong> {{ user.profile.availability }}</p>
-        <a href="{% url 'profile_edit' %}" class="btn btn-secondary">Edit Profile</a>
+    <div class="d-flex flex-column flex-md-row align-items-center mb-4">
+      {% if user.userdetail.profile_pic %}
+        <img src="{{ user.userdetail.profile_pic.url }}" alt="Profile photo" class="rounded-circle mr-md-4 mb-3 mb-md-0" width="150" height="150" style="object-fit: cover;" />
+      {% else %}
+        <div class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center mr-md-4 mb-3 mb-md-0" style="width:150px; height:150px; font-size: 4rem;">
+          🧑‍🎓
+        </div>
+      {% endif %}
+      <div>
+        <h3 class="mb-1">{{ user.username }}</h3>
+        <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
+        <p class="text-muted mb-2">{{ user.userdetail.description }}</p>
+        <p class="mb-1"><strong>Location:</strong> {{ user.profile.location|default:"Not specified" }}</p>
+        <p class="mb-3"><strong>Availability:</strong> {{ user.profile.availability|default:"Not specified" }}</p>
+        <a href="{% url 'profile_edit' %}" class="btn btn-outline-secondary btn-sm">Edit Profile</a>
       </div>
     </div>
 
     <hr>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 mb-4">
         <h5 class="text-success">Skills Offered</h5>
-        <ul>
-            <li>{{ user.userdetail.skills_offered }}</li>
-        </ul>
+        {% if user.userdetail.skills_offered %}
+          <ul class="list-group list-group-flush">
+            {% for skill in user.userdetail.skills_offered.all %}
+              <li class="list-group-item px-0">{{ skill.title }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted">No skills offered yet.</p>
+        {% endif %}
       </div>
-      <div class="col-md-6">
+
+      <div class="col-md-6 mb-4">
         <h5 class="text-primary">Skills Wanted</h5>
-        <ul>
-            <li>{{ user.userdetail.skills_needed }}</li>
-          
-        </ul>
+        {% if user.userdetail.skills_needed %}
+          <ul class="list-group list-group-flush">
+            {% for skill in user.userdetail.skills_needed.all %}
+              <li class="list-group-item px-0">{{ skill.title }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted">No skills wanted yet.</p>
+        {% endif %}
       </div>
     </div>
 
     <hr>
 
-    <h5 class="mt-4">⭐ Reviews</h5>
+    <h5 class="mt-4 mb-3">⭐ Reviews</h5>
     {% for review in user.reviews_received.all %}
-      <div class="border rounded p-3 mb-2">
+      <div class="border rounded p-3 mb-3">
         <strong>{{ review.reviewer.username }}</strong> 
         - <span class="text-warning">{{ review.rating }} ★</span><br>
         <p class="mb-0">{{ review.comment }}</p>
       </div>
     {% empty %}
-      <p>No reviews yet.</p>
+      <p class="text-muted">No reviews yet.</p>
     {% endfor %}
   </div>
 </div>
-
 {% endblock %}
-
