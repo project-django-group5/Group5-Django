@@ -1,14 +1,17 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg, Count
+
 
 @login_required
 def skill_list(request):
-    skill= Skill.objects.all()
+    skill= Skill.objects.annotate(
+        average_rating=Avg('review__rating'),
+        review_count=Count('review')
+    )
     return render(request, 'skill/skill_list.html',{'skills': skill})
 
 @login_required

@@ -259,7 +259,6 @@ footer {
 .section:nth-child(odd) {
     background-color: #ffffff;
 }
-
 .card-img-top {
 height: 200px;
 object-fit: cover;
@@ -272,7 +271,6 @@ cursor: pointer;
 .card-img-top:hover {
 transform: scale(1.1);
 } 
-
 
 .icon {
     font-size: 2rem;
@@ -314,7 +312,6 @@ transform: scale(1.1) !important;
     background: #e2e6ea;
     color: #0056b3;
 }
-
 .cta:hover {
 transform: scale(1.1);
 }
@@ -344,4 +341,31 @@ transform: scale(1.1);
     color: gold;
 }
 
+ .star-rating label {
+        font-size: 2rem;
+        color: #ddd;
+        cursor: pointer;
+    }
 
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: #ffc107;
+    }
+
+    .star-rating {
+        /* display: flex; */
+        flex-direction: row-reverse;
+        direction:ltr;
+        justify-content: flex-start;
+        gap: 0.3rem;
+    }
+
+    .star-rating input {
+        display: none;
+    }
+
+    .star-rating input:checked + label,
+    .star-rating input:checked ~ label {
+        color: #ffc107;
+    }
