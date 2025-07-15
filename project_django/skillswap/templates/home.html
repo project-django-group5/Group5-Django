@@ -1,47 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block title %}Home - SkillSwap{% endblock %}
+
 {% block content %}
-<div class="d-flex flex-column  vh-100 bg-light ">
-    <h1 class="text-center">🌟 Welcome to SkillSwap!</h1>
-    <p class="lead ">
-        Find, offer, and exchange skills with others! <br><br>
-        SkillSwap is your community-driven platform to share what you know and learn what you love.
-        Whether you're a guitar whiz, a coding pro, a cooking enthusiast — or just curious to learn something new — this is the place for you.
-    </p>
-    <p>
-        🔁 How It Works:
-        <ol>
-            <li> Create Your Profile <br>
-                Sign up and tell us what skills you offer and what you'd like to learn.
-            </li>
-            <li>
-                Browse Skills <br>
-                Explore a wide range of skills shared by users — from music and art to languages and technology.
-            </li>
-            <li>
-                Connect &amp; Swap <br>
-                Contact other users, arrange a session, and grow your knowledge.
-            </li>
-            <li>
-                Rate &amp; Review <br>
-                After each session, leave feedback to help others in the community.
-            </li>
-        </ol>            
-    </p> 
-    <p>
-        💡 Why Use SkillSwap?
-        <ul>
-            <li>It's free to use</li>
-            <li>Find local or remote skill swaps</li>
-            <li>Build your resume by teaching others</li>
-            <li>Discover hobbies, level up, or make new friends</li>
-        </ul>
-    </p> 
-    <p>
-        🚀 Ready to get started? <br>
-        👉 <a href="{% url 'register' %}">Sign Up Now</a>  or  
-        <small class="text-muted"><a href="{% url 'login' %}">Log In</a> to join the SkillSwap community.</small>
-    </p>
-</div>
-  
+<section class="hero" style="background: url('{% static "images/bgimage.jpg" %}') no-repeat center center/cover;">
+    
+        <h1>🌟 Welcome to SkillSwap</h1>
+        <p>Find, offer, and exchange skills with others!<br>
+            SkillSwap is your community-driven platform to share what you know and learn what you love. Whether you're a guitar whiz, a coding pro, a cooking enthusiast — or just curious to learn something new — this is the place for you.
+        </p>
+</section>
+
+<!-- How It Works -->
+<section class="section" >
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h2 class="icon">🔁 How It Works</h2>
+            <p><strong>Create Your Profile</strong><br>Sign up and tell us what skills you offer and what you'd like to learn.</p>
+            <p><strong>Browse Skills</strong><br>Explore a wide range of skills shared by users — from music and art to languages and technology.</p>
+            <p><strong>Connect & Swap</strong><br>Contact other users, arrange a session, and grow your knowledge.</p>
+            <p><strong>Rate & Review</strong><br>After each session, leave feedback to help others in the community.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images/skill_laptop.jpg' %}" alt="How it works" data-aos="zoom-in">
+        </div>
+    </div>
+</section>
+
+<!-- Why Use SkillSwap -->
+<section class="section">
+    <div class="row align-items-center flex-row-reverse" data-aos="fade-left">
+        <div class="col-md-6">
+            <h2 class="icon">💡 Why Use SkillSwap?</h2>
+            <p><strong>It's free to use</strong></p>
+            <p><strong>Find local or remote skill swaps</strong></p>
+            <p><strong>Build your resume by teaching others</strong></p>
+            <p><strong>Discover hobbies, level up, or make new friends</strong></p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images/skill_share.jpg' %}" alt="Why use SkillSwap" data-aos="zoom-in-left">
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta">
+    <h2>🚀 Ready to get started?</h2>
+    <p>👉 <strong>Sign Up Now</strong> or <strong>Log In</strong> to join the SkillSwap community</p>
+    <div>
+        <a href="{% url 'register' %}">Sign Up</a>
+        <a href="{% url 'login' %}">Log In</a>
+    </div>
+</section>
+ 
 {% endblock %}
