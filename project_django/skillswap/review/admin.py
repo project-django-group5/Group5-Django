@@ -4,4 +4,7 @@ from .models import *
 
 admin.site.register(Review)
 
+from .models import *
+
+admin.site.register(Review)
 

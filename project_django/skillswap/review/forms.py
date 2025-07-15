@@ -9,4 +9,3 @@ class ReviewForm(forms.ModelForm):
             'rating': forms.RadioSelect(choices=[(i, '') for i in range(1, 6)]),
             'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your review...'})
         }
-
