@@ -259,6 +259,7 @@ footer {
 .section:nth-child(odd) {
     background-color: #ffffff;
 }
+
 .card-img-top {
 height: 200px;
 object-fit: cover;
@@ -271,6 +272,7 @@ cursor: pointer;
 .card-img-top:hover {
 transform: scale(1.1);
 } 
+
 
 .icon {
     font-size: 2rem;
@@ -312,4 +314,34 @@ transform: scale(1.1) !important;
     background: #e2e6ea;
     color: #0056b3;
 }
+
+.cta:hover {
+transform: scale(1.1);
+}
+
+
+.star-rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: inline-flex;
+    gap: 5px;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
 
