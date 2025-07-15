@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('leave_review/', views.leave_review, name='leave_review'),
+    path('review/<int:pk>/<int:skill_id>/', views.leave_review, name='leave_review'),
    
 ]

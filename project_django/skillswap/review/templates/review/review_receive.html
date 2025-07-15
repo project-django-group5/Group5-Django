@@ -1,31 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-
+{% load star_filters %}
 {% block content %}
-<div class="container mt-5">
-  <h2 class="mb-4">Reviews for {{ user.username }}</h2>
+<div class="container mt-4">
+    <h2>Reviews for {{ user.get_full_name|default:user.username }}</h2>
 
-  {% if reviews %}
-    {% for review in reviews %}
-      <div class="card mb-3 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">
-            {% for i in "12345"|slice:":review.rating"|make_list %}
-              <i class="fas fa-star text-warning"></i>
-            {% endfor %}
-            {% for i in "12345"|slice:"review.rating:"|make_list %}
-              <i class="far fa-star text-muted"></i>
-            {% endfor %}
-            &nbsp;from {{ review.reviewer.username }}
-          </h5>
-          <p class="card-text">{{ review.comment }}</p>
-          <small class="text-muted">{{ review.created_at|naturaltime }}</small>
-        </div>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>No reviews yet for this user.</p>
-  {% endif %}
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ review.reviewer.username }} 
+                        <span class="text-warning">
+                            {% for i in "12345"|slice:":review.rating"|make_list %}
+                                ★
+                            {% endfor %}
+                            {% for i in "12345"|slice:"review.rating:"|make_list %}
+                                ☆
+                            {% endfor %}
+                        </span>
+                    </h5>
+                    <p class="card-text">{{ review.comment }}</p>
+                    <p class="card-text"><small class="text-muted">{{ review.timestamp|naturaltime }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No reviews yet.</p>
+    {% endif %}
 </div>
 {% endblock %}

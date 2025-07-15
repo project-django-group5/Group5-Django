@@ -28,6 +28,8 @@ urlpatterns = [
     path("", include("skill.urls")),
     path("", include('search.urls')), 
     path("", include("contact.urls")),
+    path('', include('review.urls')),
+
 
 ] 
 

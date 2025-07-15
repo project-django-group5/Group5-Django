@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load star_filters %}
 {% block title %}{{ skill.title }} | SkillSwap{% endblock %}
 
 {% block content %}
@@ -31,6 +31,23 @@
                             <p>{{ skill.location|default:"Not specified" }}</p>
                         </div>
                     </div>
+                    <p>
+                    Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
+                    ({{ skill.review_count }} reviews)
+                    </p>
+                    <p><strong>Total Reviews:</strong> {{ skill.review_count }}</p>
+                    <hr>
+                    <h3>User Reviews:</h3>
+                    {% if reviews %}
+                        {% for review in reviews %}
+                            <div class="review">
+                                <p><strong>{{ review.reviewer.username }}:</strong> {{ review.rating }} / 5</p>
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No reviews yet for this skill.</p>
+                    {% endif %}
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
@@ -38,6 +55,22 @@
                             <p class="mb-0 font-weight-bold">{{ skill.user.username }}</p>
                             <small class="text-muted">on {{ skill.created|date:"F j, Y" }}</small>
                         </div>
+                    
+                        {% if user.is_authenticated and user != skill.user  %}
+                            {% if skill.review_count <= 0 %}
+                            <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-primary">
+                                Leave a Review
+                            </a>
+                          {% endif %}
+                            
+                        {% elif user == skill.user %}
+                            <p><em>You can't review your own skill.</em></p>
+                        {% else %}
+                            <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary">
+                                Log in to Leave a Review
+                            </a>
+                        {% endif %}
+
                         <div>
                             <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-success">
                                 📧 Contact Me
