@@ -259,8 +259,7 @@ footer {
 .section:nth-child(odd) {
     background-color: #ffffff;
 }
-<<<<<<< HEAD
-=======
+
 .card-img-top {
 height: 200px;
 object-fit: cover;
@@ -273,12 +272,13 @@ cursor: pointer;
 .card-img-top:hover {
 transform: scale(1.1);
 } 
->>>>>>> 9e8f17c89ae934e7c13571a9db77a0d7a0d9fb2e
+
 
 .icon {
     font-size: 2rem;
     margin-bottom: 1rem;
 }
+
 
 .cta {
     background: linear-gradient(135deg, #6f42c1, #007bff);
@@ -294,7 +294,9 @@ transform: scale(1.1);
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
-
+.cta:hover {
+transform: scale(1.1) !important;
+}
 .cta a {
     display: inline-block;
     margin: 0.5rem 1rem;
@@ -307,18 +309,15 @@ transform: scale(1.1);
     transition: 0.3s;
 }
 
+
 .cta a:hover {
     background: #e2e6ea;
     color: #0056b3;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 .cta:hover {
 transform: scale(1.1);
 }
-=======
->>>>>>> 9e8f17c89ae934e7c13571a9db77a0d7a0d9fb2e
 
 
 .star-rating {
@@ -345,7 +344,4 @@ transform: scale(1.1);
     color: gold;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> fe5b78ab5a01d355733bc8ea834ab39036168c9a
->>>>>>> 9e8f17c89ae934e7c13571a9db77a0d7a0d9fb2e
+
