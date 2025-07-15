@@ -31,6 +31,10 @@
             <li><strong>Location:</strong> {{ skill.location }}</li>
           </ul>
           <div class="mt-auto">
+            {% comment %} <a href="{% url 'review_give' listing.id listing.user.id %}" class="btn btn-outline-primary btn-sm">
+            Leave a Review
+            </a> {% endcomment %}
+
             <a href="{% url 'skill_detail' skill.id %}" class="btn btn-outline-primary btn-sm btn-block">
               View Details
             </a>

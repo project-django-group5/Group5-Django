@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-3">Leave a Review for {{ reviewee.username }}</h2>
+  <p><strong>Listing:</strong> {{ listing.title }}</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Submit Review</button>
+  </form>
+</div>
+{% endblock %}

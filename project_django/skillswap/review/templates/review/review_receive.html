@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Reviews for {{ user.username }}</h2>
+
+  {% if reviews %}
+    {% for review in reviews %}
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            {% for i in "12345"|slice:":review.rating"|make_list %}
+              <i class="fas fa-star text-warning"></i>
+            {% endfor %}
+            {% for i in "12345"|slice:"review.rating:"|make_list %}
+              <i class="far fa-star text-muted"></i>
+            {% endfor %}
+            &nbsp;from {{ review.reviewer.username }}
+          </h5>
+          <p class="card-text">{{ review.comment }}</p>
+          <small class="text-muted">{{ review.created_at|naturaltime }}</small>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No reviews yet for this user.</p>
+  {% endif %}
+</div>
+{% endblock %}
