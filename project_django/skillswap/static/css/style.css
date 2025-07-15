@@ -350,8 +350,9 @@ transform: scale(1.1);
     }
 
     .star-rating {
-        display: flex;
+        /* display: flex; */
         flex-direction: row-reverse;
+        direction:ltr;
         justify-content: flex-start;
         gap: 0.3rem;
     }
