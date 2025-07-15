@@ -1,9 +1,7 @@
 from django.db import models
-<<<<<<< HEAD
-
-# Create your models here.
-=======
 from django.contrib.auth.models import User
+
+# Create your models here
 
 class Review(models.Model):
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews_given')
@@ -18,4 +16,4 @@ class Review(models.Model):
 
     class Meta:
         unique_together = (('reviewer', 'receiver', 'skill'),)
->>>>>>> 9e8f17c89ae934e7c13571a9db77a0d7a0d9fb2e
+
