@@ -3,19 +3,32 @@ document.addEventListener('DOMContentLoaded', function () {
   const body = document.body;
 
   function updateIcon(isDark) {
-    toggle.textContent = isDark ? '☀️' : '🌙';
+    if (toggle) {
+      toggle.textContent = isDark ? '☀️' : '🌙';
+    }
   }
 
-  let isDark = localStorage.getItem('dark-mode') === 'enabled';
-  if (isDark) {
-    body.classList.add('dark-mode');
-    updateIcon(true);
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let storedPreference = localStorage.getItem('dark-mode');
+  let isDark = false;
+
+  if (storedPreference === 'enabled') {
+    isDark = true;
+  } else if (storedPreference === 'disabled') {
+    isDark = false;
+  } else {
+    isDark = prefersDark;
   }
 
-  toggle.addEventListener('click', () => {
-    isDark = !body.classList.contains('dark-mode');
-    body.classList.toggle('dark-mode', isDark);
-    localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
-    updateIcon(isDark);
-  });
+  body.classList.toggle('dark-mode', isDark);
+  updateIcon(isDark);
+
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      isDark = !body.classList.contains('dark-mode');
+      body.classList.toggle('dark-mode', isDark);
+      localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
+      updateIcon(isDark);
+    });
+  }
 });

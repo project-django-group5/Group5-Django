@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load star_filters %}
+{% block title %}{{ skill.title }} | SkillSwap{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-2xl">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center rounded-top">
+                    <h3 class="mb-0">{{ skill.title }}</h3>
+                    <span class="badge badge-light text-primary">{{ skill.get_skill_type_display }}</span>
+                </div>
+                <div class="card-body p-4">
+                    <div class="mb-3">
+                        <p class="mb-1 text-muted">Category</p>
+                        <h5>{{ skill.category }}</h5>
+                    </div>
+                    <div class="mb-3">
+                        <p class="mb-1 text-muted">Description</p>
+                        <p class="text-dark">{{ skill.description|linebreaksbr }}</p>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <p class="mb-1 text-muted">Availability</p>
+                            <p>{{ skill.availability }}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-1 text-muted">Location</p>
+                            <p>{{ skill.location|default:"Not specified" }}</p>
+                        </div>
+                    </div>
+                    <p>
+                    Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
+                    ({{ skill.review_count }} reviews)
+                    </p>
+                    <p><strong>Total Reviews:</strong> {{ skill.review_count }}</p>
+                    <hr>
+                    <h3>User Reviews:</h3>
+                    {% if reviews %}
+                        {% for review in reviews %}
+                            <div class="review">
+                                <p><strong>{{ review.reviewer.username }}:</strong> {{ review.rating }} / 5</p>
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No reviews yet for this skill.</p>
+                    {% endif %}
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="mb-1 text-muted">Posted by</p>
+                            <p class="mb-0 font-weight-bold">{{ skill.user.username }}</p>
+                            <small class="text-muted">on {{ skill.created|date:"F j, Y" }}</small>
+                        </div>
+                    
+                        {% if user.is_authenticated and user != skill.user  %}
+                            {% if skill.review_count <= 0 %}
+                            <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-primary">
+                                Leave a Review
+                            </a>
+                          {% endif %}
+                            
+                        {% elif user == skill.user %}
+                            <p><em>You can't review your own skill.</em></p>
+                        {% else %}
+                            <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary">
+                                Log in to Leave a Review
+                            </a>
+                        {% endif %}
+
+                        <div>
+                            <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-success">
+                                📧 Contact Me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right bg-white border-top-0">
+                    <a href="javascript:history.back()" class="btn btn-outline-secondary">
+                        🔙 Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

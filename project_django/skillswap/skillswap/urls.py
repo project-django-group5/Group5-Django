@@ -28,8 +28,10 @@ urlpatterns = [
     path("", include("skill.urls")),
     path("", include('search.urls')), 
     path("", include("contact.urls")),
+    path('', include('review.urls')),
 
-]
+
+] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
