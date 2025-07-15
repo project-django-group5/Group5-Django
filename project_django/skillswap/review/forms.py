@@ -6,7 +6,7 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['rating', 'comment']
         widgets = {
-            'rating': forms.RadioSelect(choices=[(i, '') for i in range(1, 5)]),
+            'rating': forms.RadioSelect(choices=[(i, '') for i in range(1, 6)]),
             'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your review...'})
         }
 
