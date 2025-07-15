@@ -308,6 +308,35 @@ transform: scale(1.1);
     background: #e2e6ea;
     color: #0056b3;
 }
+<<<<<<< HEAD
 .cta:hover {
 transform: scale(1.1);
 }
+=======
+
+
+.star-rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: inline-flex;
+    gap: 5px;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
+>>>>>>> fe5b78ab5a01d355733bc8ea834ab39036168c9a
