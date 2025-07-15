@@ -82,6 +82,8 @@
                   <span class="badge badge-secondary">{{ skill.category }}</span>
                   <span class="badge badge-info">{{ skill.skill_type }}</span>
                 </div>
+                <p>Average Rating: {{ skill.average_rating|default:"No ratings yet" }}</p>
+                <p>Total Reviews: {{ skill.review_count }}</p>
               </div>
             </div>
           </div>

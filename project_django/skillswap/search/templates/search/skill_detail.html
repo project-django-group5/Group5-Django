@@ -31,6 +31,29 @@
                             <p>{{ skill.location|default:"Not specified" }}</p>
                         </div>
                     </div>
+                    <p><strong>Average Rating:</strong> 
+                    {% if skill.average_rating %}
+                        {{ skill.average_rating|floatformat:1 }} / 5
+                    {% else %}
+                        Not rated yet
+                    {% endif %}
+                    </p>
+
+                    <p><strong>Total Reviews:</strong> {{ skill.review_count }}</p>
+
+                    <hr>
+
+                    <h3>User Reviews:</h3>
+                    {% if reviews %}
+                        {% for review in reviews %}
+                            <div class="review">
+                                <p><strong>{{ review.reviewer.username }}:</strong> {{ review.rating }} / 5</p>
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No reviews yet for this skill.</p>
+                    {% endif %}
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>

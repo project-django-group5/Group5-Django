@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from skill.models import Skill
 # Create your models here
 
 class Review(models.Model):
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews_given')
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews_received')
-    skill = models.ForeignKey('Skill', on_delete=models.CASCADE)
+    skill = models.ForeignKey(Skill, related_name='review', on_delete=models.CASCADE)
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
     comment = models.TextField(blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -16,3 +16,5 @@ class Review(models.Model):
 
     class Meta:
         unique_together = (('reviewer', 'receiver', 'skill'),)
+
+

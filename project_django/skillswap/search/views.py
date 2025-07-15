@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from skill.models import Skill
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg, Count
+from review.models import Review 
 
 def skill_search(request):
     title = request.GET.get('title')
@@ -24,7 +26,7 @@ def skill_search(request):
     if availability:
         filters &= Q(availability__icontains=availability)
 
-    skills = skills.filter(filters)
+    skills = skills.filter(filters).annotate(average_rating=Avg('review__rating'), review_count=Count('review'))
 
     all_titles = Skill.objects.values_list('title', flat=True).distinct()
     all_categories = Skill.objects.values_list('category', flat=True).distinct()
@@ -44,5 +46,15 @@ def skill_search(request):
 
 @login_required
 def skill_detail(request, pk):
-    skill = get_object_or_404(Skill, pk=pk)
-    return render(request, 'search/skill_detail.html', {'skill': skill})
+    skill = Skill.objects.annotate(
+        average_rating=Avg('review__rating'),
+        review_count=Count('review')
+    ).get(pk=pk)
+
+    reviews = Review.objects.filter(skill=skill).select_related('reviewer')
+
+    return render(request, 'skill/skill_detail.html', {
+        'skill': skill,
+        'reviews': reviews
+    })
+

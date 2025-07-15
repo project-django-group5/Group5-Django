@@ -30,11 +30,27 @@
             <li><strong>Availability:</strong> {{ skill.availability }}</li>
             <li><strong>Location:</strong> {{ skill.location }}</li>
           </ul>
-          <div class="mt-auto">
-            {% comment %} <a href="{% url 'review_give' listing.id listing.user.id %}" class="btn btn-outline-primary btn-sm">
-            Leave a Review
-            </a> {% endcomment %}
+          {% if skill.average_rating %}
+          <div class="mb-2">
+            <strong>Rating:</strong>
+            <span class="text-warning">
+              {% for i in "12345" %}
+                {% if forloop.counter <= skill.average_rating|floatformat:"0" %}
+                  ★
+                {% else %}
+                  ☆
+                {% endif %}
+              {% endfor %}
+            </span>
+            <small class="text-muted">({{ skill.review_count }} review{{ skill.review_count|pluralize }})</small>
+          </div>
+          {% else %}
+          <div class="mb-2 text-muted">
+            <small>No reviews yet</small>
+          </div>
+        {% endif %}
 
+          <div class="mt-auto">
             <a href="{% url 'skill_detail' skill.id %}" class="btn btn-outline-primary btn-sm btn-block">
               View Details
             </a>

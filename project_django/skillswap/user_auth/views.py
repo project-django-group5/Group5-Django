@@ -1,10 +1,12 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import UserForm,RegistrationForm,LoginForm
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg, Count
+from skill.models import Skill
+from review.models import Review
 
 # def index(request):
 #     return render(request,'user_auth/index.html')
@@ -72,7 +74,16 @@ def User_logout(request):
 
 @login_required
 def user_profile(request):
-    return render(request,'user_auth/profile.html')
+    user = request.user
+    skills = Skill.objects.filter(user=user).annotate(
+        average_rating=Avg('review__rating'),  
+        review_count=Count('review')
+    )
+
+    return render(request, 'user_auth/profile.html', {
+        'user_profile': user,
+        'skills': skills,
+    })
 
 @login_required
 def edit_profile(request):

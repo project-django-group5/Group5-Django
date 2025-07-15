@@ -24,46 +24,18 @@
 
     <hr>
 
-    <div class="row">
-      <div class="col-md-6 mb-4">
-        <h5 class="text-success">Skills Offered</h5>
-        {% if user.userdetail.skills_offered %}
-          <ul class="list-group list-group-flush">
-            {% for skill in user.userdetail.skills_offered.all %}
-              <li class="list-group-item px-0">{{ skill.title }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="text-muted">No skills offered yet.</p>
-        {% endif %}
-      </div>
+    <h2>{{ user_profile.username }}'s Skills</h2>
 
-      <div class="col-md-6 mb-4">
-        <h5 class="text-primary">Skills Wanted</h5>
-        {% if user.userdetail.skills_needed %}
-          <ul class="list-group list-group-flush">
-            {% for skill in user.userdetail.skills_needed.all %}
-              <li class="list-group-item px-0">{{ skill.title }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="text-muted">No skills wanted yet.</p>
-        {% endif %}
-      </div>
-    </div>
-
-    <hr>
-
-    <h5 class="mt-4 mb-3">⭐ Reviews</h5>
-    {% for review in user.reviews_received.all %}
-      <div class="border rounded p-3 mb-3">
-        <strong>{{ review.reviewer.username }}</strong> 
-        - <span class="text-warning">{{ review.rating }} ★</span><br>
-        <p class="mb-0">{{ review.comment }}</p>
-      </div>
+    {% for skill in skills %}
+        <div>
+            <h4>{{ skill.title }}</h4>
+            <p>Location: {{ skill.location }}</p>
+            <p>Category: {{ skill.category }}</p>
+            <p>Availability: {{ skill.availability }}</p>
+            <p>Average Rating: {{ skill.average_rating|default:"No ratings yet" }}</p>
+            <p>Review Count: {{ skill.review_count }}</p>
+        </div>
     {% empty %}
-      <p class="text-muted">No reviews yet.</p>
+        <p>This user has not listed any skills yet.</p>
     {% endfor %}
-  </div>
-</div>
 {% endblock %}
