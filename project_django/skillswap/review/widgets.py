@@ -2,6 +2,7 @@
 from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
 
+
 class StarRadioSelect(RadioSelect):
     def render(self, name, value, attrs=None, renderer=None):
         output = []
