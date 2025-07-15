@@ -308,11 +308,9 @@ transform: scale(1.1);
     background: #e2e6ea;
     color: #0056b3;
 }
-<<<<<<< HEAD
 .cta:hover {
 transform: scale(1.1);
 }
-=======
 
 
 .star-rating {
@@ -339,4 +337,3 @@ transform: scale(1.1);
     color: gold;
 }
 
->>>>>>> fe5b78ab5a01d355733bc8ea834ab39036168c9a
