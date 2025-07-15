@@ -276,6 +276,20 @@ transform: scale(1.1);
     font-size: 2rem;
     margin-bottom: 1rem;
 }
+.team-heading {
+  color: lab(43.31% 78.73 -72.82);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+ .tech-heading {
+  color: lab(43.31% 78.73 -72.82); 
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.lead-highlight {
+  color: oklch(43.904% 0.2238 301.103);
+}
 
 
 .cta {
