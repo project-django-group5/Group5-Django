@@ -277,6 +277,7 @@ transform: scale(1.1);
     margin-bottom: 1rem;
 }
 
+
 .cta {
     background: linear-gradient(135deg, #6f42c1, #007bff);
     color: white;
@@ -291,7 +292,9 @@ transform: scale(1.1);
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
-
+.cta:hover {
+transform: scale(1.1) !important;
+}
 .cta a {
     display: inline-block;
     margin: 0.5rem 1rem;
@@ -304,39 +307,9 @@ transform: scale(1.1);
     transition: 0.3s;
 }
 
+
 .cta a:hover {
     background: #e2e6ea;
     color: #0056b3;
 }
-<<<<<<< HEAD
-.cta:hover {
-transform: scale(1.1);
-}
-=======
 
-
-.star-rating {
-    direction: rtl;
-    unicode-bidi: bidi-override;
-    display: inline-flex;
-    gap: 5px;
-}
-
-.star-rating input[type="radio"] {
-    display: none;
-}
-
-.star-rating label {
-    font-size: 2rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.star-rating input:checked ~ label,
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-    color: gold;
-}
-
->>>>>>> fe5b78ab5a01d355733bc8ea834ab39036168c9a
