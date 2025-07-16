@@ -16,9 +16,11 @@
         <h3 class="mb-1">{{ user.username }}</h3>
         <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
         <p class="text-muted mb-2">{{ user.userdetail.description }}</p>
-        <p class="mb-1"><strong>Location:</strong> {{ user.profile.location|default:"Not specified" }}</p>
-        <p class="mb-3"><strong>Availability:</strong> {{ user.profile.availability|default:"Not specified" }}</p>
-        <a href="{% url 'profile_edit' %}" class="btn btn-outline-secondary btn-sm">Edit Profile</a>
+        <p class="mb-1"><strong>Location:</strong> {{ user.userdetail.location|default:"Not specified" }}</p>
+        <p class="mb-3"><strong>Availability:</strong> {{ user.userdetail.availability|default:"Not specified" }}</p>
+        {% if request.user == user %}
+             <a href="{% url 'profile_edit' %}" class="btn btn-outline-secondary btn-sm">Edit Profile</a>
+        {% endif %}
       </div>
     </div>
 
@@ -31,6 +33,8 @@
             <h4>{{ skill.title }}</h4>
             <p>Location: {{ skill.location }}</p>
             <p>Category: {{ skill.category }}</p>
+            <p>Availability: {{ skill.availability }}</p>
+            <p>Location: {{ skill.location }}</p>
             <p>Availability: {{ skill.availability }}</p>
             <p>
               Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
