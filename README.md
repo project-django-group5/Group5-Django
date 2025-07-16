@@ -6,7 +6,7 @@ SkillSwap is a Django-based web platform where users can connect by offering or 
 * Elaiyarani Soundararajan
 * Judith Soundarya Joseph
 * Kanimozhi Sangapillai
-* Sowmya Ayyattupuram
+* Sowmya Ayarottupura Velayudhankutty
 
 ✨ Features Implemented
 🔐 User Authentication
