@@ -81,11 +81,12 @@
                    class="btn btn-outline-primary">
                   ⭐ Leave a Review
                 </a>
+                <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-outline-success">
+                    📧 Contact Me
+                </a>
               {% endif %}
 
-              <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-outline-success">
-                📧 Contact Me
-              </a>
+
             </div>
           </div>
         </div>
