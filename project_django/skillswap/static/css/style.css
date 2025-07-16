@@ -350,3 +350,236 @@ footer {
 .dark-mode .section .icon {
   color: #e0e0e0;
 }
+
+
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+header nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.stylish-select {
+  background-color: #f9f9ff;
+  border-radius: 50px;
+  padding: 10px 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.stylish-select:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #6c63ff, #a084ff);
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #594ee2, #8863ff);
+  transform: scale(1.02);
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+.hero {
+    
+    height: 100vh;
+    color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    animation: fadeInUp 1.5s ease-in-out;
+    max-width: 700px;
+}
+.section .row {
+    align-items: stretch;
+}
+
+.section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: none; /* remove restriction */
+    border-radius: 10px;
+}
+.section {
+    padding: 4rem 2rem;
+}
+
+.section:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.section:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.card-img-top {
+height: 200px;
+object-fit: cover;
+box-shadow: 0 4px 25px rgba(14, 36, 49, 0.15);
+border-radius: 0.5rem;
+transition: transform 0.5s ease-in-out;
+cursor: pointer;
+}
+
+.card-img-top:hover {
+transform: scale(1.1);
+} 
+
+
+.icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+
+.cta {
+    background: linear-gradient(135deg, #6f42c1, #007bff);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 1rem;
+    margin: 4rem auto;
+    max-width: 900px;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.cta:hover {
+transform: scale(1.1) !important;
+}
+.cta a {
+    display: inline-block;
+    margin: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: #007bff;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+
+.cta a:hover {
+    background: #e2e6ea;
+    color: #0056b3;
+}
+
+.cta:hover {
+transform: scale(1.1);
+}
+
+
+/* INTERACTIVE STAR INPUT (for forms) */
+.star-rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: inline-flex;
+    gap: 5px;
+}
+.star-rating input[type="radio"] {
+    display: none;
+}
+.star-rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
+/* READ-ONLY DISPLAY STARS (average/user reviews) */
+.static-star-rating {
+    display: inline-block;
+    direction: ltr;
+    font-size: 0; /* Remove gap between inline elements */
+}
+.static-star-rating .star {
+    font-size: 2rem;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    position: relative;
+    color: lightgray;
+    font-family: inherit;
+}
+.static-star-rating .star.full {
+    color: gold;
+}
+.static-star-rating .star.empty {
+    color: lightgray;
+}
+.static-star-rating .star.half {
+    color: lightgray;
+}
+.static-star-rating .star.half::before {
+    content: '★';
+    color: gold;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: left;
+    vertical-align: middle;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
