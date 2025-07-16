@@ -83,11 +83,15 @@
                   <span class="badge badge-secondary">{{ skill.category }}</span>
                   <span class="badge badge-info">{{ skill.skill_type }}</span>
                 </div>
-                <p>
-                  Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
-                  ({{ skill.review_count }} reviews)
-                </p>
-                <p>Total Reviews: {{ skill.review_count }}</p>
+                  {% if skill.average_rating %}
+                    <p>
+                      Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
+                      ({{ skill.review_count }} review{{ skill.review_count|pluralize }})
+                    </p>
+                  {% else %}
+                    <p>No reviews yet.</p>
+                  {% endif %}
+
               </div>
             </div>
           </div>

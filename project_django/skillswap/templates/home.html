@@ -13,6 +13,7 @@
       <li data-target="#skillCarousel" data-slide-to="2"></li>
     </ol>
 
+
     <div class="carousel-inner text-white">
       <div class="carousel-item active text-white position-relative" style="height: 400px;">
         <div class="carousel_img"
@@ -27,6 +28,8 @@
         </div>
       </div>
 
+
+
       <div class="carousel-item  text-white position-relative" style="height: 400px;">
         <div class="carousel_img"
           style=" background: url('static/images/carousel_img2.jpeg') center center / cover no-repeat;"></div>
@@ -40,10 +43,10 @@
         </div>
       </div>
 
+
       <div class="carousel-item  text-white position-relative" style="height: 400px;">
         <div class="carousel_img"
-          style="background: url('static/images/carousel_img3.png') center center / cover no-repeat;">
-        </div>
+          style="background: url('static/images/carousel_img3.png') center center / cover no-repeat;"></div>
         <div class="overlay">
           <div class="d-flex flex-column justify-content-center align-items-center h-100 p-5"
             style="position: relative; z-index: 2;">
@@ -101,6 +104,7 @@
     </div>
   </div>
 </section>
+
 <div class="container my-5">
   <div class="row text-center">
     <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-delay="250">
@@ -140,12 +144,15 @@
 
 
 <section class="cta" data-aos="zoom-in" data-aos-delay="400">
-  <h2>🚀 Ready to get started?</h2>
-  <p>👉 <strong>Sign Up Now</strong> or <strong>Log In</strong> to join the SkillSwap community</p>
-  <div>
-    <a href="{% url 'register' %}">Sign Up</a>
-    <a href="{% url 'login' %}">Log In</a>
-  </div>
+
+
+    <h2>🚀 Ready to get started?</h2>
+    <p>👉 <strong>Sign Up Now</strong> or <strong>Log In</strong> to join the SkillSwap community</p>
+    <div>
+        <a href="{% url 'register' %}">Sign Up</a>
+        <a href="{% url 'login' %}">Log In</a>
+    </div>
+
 </section>
 
 {% endblock %}

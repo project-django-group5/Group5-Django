@@ -31,23 +31,34 @@
                             <p>{{ skill.location|default:"Not specified" }}</p>
                         </div>
                     </div>
-                    <p>
-                    Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
-                    ({{ skill.review_count }} reviews)
-                    </p>
-                    <p><strong>Total Reviews:</strong> {{ skill.review_count }}</p>
+                    {% if skill.average_rating %}
+                        <p>
+                            Average Rating:
+                            <span class="static-star-rating">
+                                {{ skill.average_rating|star_rating }}
+                            </span>
+                            ({{ skill.review_count }} review{{ skill.review_count|pluralize }})
+                        </p>
+                    {% else %}
+                        <p>No reviews yet for this skill.</p>
+                    {% endif %}
                     <hr>
                     <h3>User Reviews:</h3>
                     {% if reviews %}
                         {% for review in reviews %}
-                            <div class="review">
-                                <p><strong>{{ review.reviewer.username }}:</strong> {{ review.rating }} / 5</p>
+                            <div class="review mb-3">
+                                <p><strong>{{ review.reviewer.username }}:</strong></p>
+                                <div class="static-star-rating mb-2">
+                                    {{ review.rating|star_rating }}
+                                </div>
+                                
                                 <p>{{ review.comment }}</p>
                             </div>
                         {% endfor %}
                     {% else %}
                         <p>No reviews yet for this skill.</p>
                     {% endif %}
+
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
@@ -61,7 +72,7 @@
                             <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-primary">
                                 Leave a Review
                             </a>
-                          {% endif %}
+                            {% endif %}
                             
                         {% elif user == skill.user %}
                             <p><em>You can't review your own skill.</em></p>

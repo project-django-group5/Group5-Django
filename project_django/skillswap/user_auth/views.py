@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from .forms import UserForm,RegistrationForm,LoginForm
 from .models import *
@@ -87,7 +87,7 @@ def user_profile(request):
 
 @login_required
 def edit_profile(request):
-    user_detail = request.user.userdetail
+    user_detail, created = UserDetail.objects.get_or_create(user= request.user)
 
     if request.method == 'POST':
         form = RegistrationForm(request.POST, request.FILES, instance=user_detail)
