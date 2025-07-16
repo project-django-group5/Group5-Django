@@ -72,7 +72,7 @@
                             <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-primary">
                                 Leave a Review
                             </a>
-                          {% endif %}
+                            {% endif %}
                             
                         {% elif user == skill.user %}
                             <p><em>You can't review your own skill.</em></p>

@@ -48,9 +48,9 @@
           {% endif %}
           <div>
             {% if user.is_authenticated %}
-              {% if user != skill.user %}
-                <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-sm btn-outline-primary">
-                  Leave a Review
+              {% if user != skill.user and  skill.review_count <= 0 %}
+                <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-primary">
+                    Leave a Review
                 </a>
               {% endif %}
             {% else %}
