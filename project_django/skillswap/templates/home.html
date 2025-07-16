@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}Home - SkillSwap{% endblock %}
 
@@ -63,54 +64,62 @@
 <!-- ---------------------------------------- -->
 
 
-<section class="section">
+<section class="section container">
   <div class="row align-items-center">
     <div class="col-md-6">
-      <h2 class="icon">🔁 How It Works</h2>
-      <p><strong>Create Your Profile</strong><br>Sign up and tell us what skills you offer and what you'd like to learn.
-      </p>
-      <p><strong>Browse Skills</strong><br>Explore a wide range of skills shared by users — from music and art to
-        languages and technology.</p>
+      <h2 class="icon mb-4">🔁 How It Works</h2>
+      <p><strong>Create Your Profile</strong><br>Sign up and tell us what skills you offer and what you'd like to learn.</p>
+      <p><strong>Browse Skills</strong><br>Explore a wide range of skills shared by users — from music and art to languages and technology.</p>
       <p><strong>Connect & Swap</strong><br>Contact other users, arrange a session, and grow your knowledge.</p>
       <p><strong>Rate & Review</strong><br>After each session, leave feedback to help others in the community.</p>
     </div>
     <div class="col-md-6 text-center">
-      <img src="{% static 'images/skill_laptop.jpg' %}" alt="How it works" data-aos="zoom-in">
+      <img src="{% static 'images/skill_laptop.jpg' %}" alt="How it works" class="img-fluid rounded shadow" loading="lazy" data-aos="zoom-in">
     </div>
   </div>
 </section>
 
-
-
-<section class="section">
-  <div class="row align-items-center flex-row-reverse" data-aos="fade-right" data-aos-delay="300">
-
+<section class="section container mt-5">
+  <div class="row align-items-center flex-md-row-reverse">
     <div class="col-md-6">
-      <h2 class="icon">💡 Why Use SkillSwap?</h2>
+      <h2 class="icon mb-4">💡 Why Use SkillSwap?</h2>
       <p><strong>It's free to use</strong></p>
       <p><strong>Find local or remote skill swaps</strong></p>
       <p><strong>Build your resume by teaching others</strong></p>
       <p><strong>Discover hobbies, level up, or make new friends</strong></p>
     </div>
     <div class="col-md-6 text-center">
-      <img src="{% static 'images/skill_share.jpg' %}" alt="Why use SkillSwap" data-aos="zoom-in-left">
+      <img src="{% static 'images/skill_share.jpg' %}" alt="Why use SkillSwap" class="img-fluid rounded shadow" loading="lazy" data-aos="zoom-in-left">
     </div>
   </div>
 </section>
+
 <div class="container my-5">
   <div class="row text-center">
-    <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-delay="250">
+    {% for card in cards %}
+    <div class="col-md-4 mb-4" data-aos="{{ card.aos_animation }}" data-aos-delay="{{ card.aos_delay }}">
+      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
+        <img src="{% static card.img %}" class="card-img-top" alt="{{ card.alt }}">
+        <div class="card-body">
+          <i class="bi {{ card.icon }} fs-1 text-primary mb-3"></i>
+          <h5 class="fw-bold">{{ card.title }}</h5>
+          <p class="text-muted">{{ card.desc }}</p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    {# fallback static cards if no context provided #}
+    <div class="col-md-4 mb-4">
       <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
         <img src="{% static 'images/skillsteps.png' %}" class="card-img-top" alt="learn explore grow">
-        <div class="card-body ">
+        <div class="card-body">
           <i class="bi bi-leaf fs-1 text-primary mb-3"></i>
           <h5 class="fw-bold">Grow Through Teaching</h5>
           <p class="text-muted">Share your expertise and boost your skills by helping others.</p>
         </div>
       </div>
     </div>
-
-    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
+    <div class="col-md-4 mb-4">
       <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
         <img src="{% static 'images/skill_swap.jpg' %}" class="card-img-top" alt="swap skills">
         <div class="card-body">
@@ -120,8 +129,7 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="250">
+    <div class="col-md-4 mb-4">
       <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
         <img src="{% static 'images/skill.jpg' %}" class="card-img-top" alt="learning is important">
         <div class="card-body">
@@ -131,17 +139,13 @@
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
 </div>
 
-
-<section class="cta" data-aos="zoom-in" data-aos-delay="400">
+<section class="cta bg-primary text-white text-center py-5" data-aos="zoom-in" data-aos-delay="400">
   <h2>🚀 Ready to get started?</h2>
-  <p>👉 <strong>Sign Up Now</strong> or <strong>Log In</strong> to join the SkillSwap community</p>
-  <div>
-    <a href="{% url 'register' %}">Sign Up</a>
-    <a href="{% url 'login' %}">Log In</a>
-  </div>
+  <p class="lead">👉 <strong><a href="{% url 'register' %}" class="text-white font-weight-bold">Sign Up Now</a></strong> or <strong><a href="{% url 'login' %}" class="text-white font-weight-bold">Log In</a></strong> to join the SkillSwap community</p>
 </section>
 
 {% endblock %}

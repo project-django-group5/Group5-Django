@@ -5,30 +5,28 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateIcon(isDark) {
     if (toggle) {
       toggle.textContent = isDark ? '☀️' : '🌙';
+      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
 
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  let storedPreference = localStorage.getItem('dark-mode');
-  let isDark = false;
+  const storedPreference = localStorage.getItem('dark-mode');
 
-  if (storedPreference === 'enabled') {
-    isDark = true;
-  } else if (storedPreference === 'disabled') {
-    isDark = false;
-  } else {
-    isDark = prefersDark;
-  }
+  let isDark = storedPreference === 'enabled' ? true
+             : storedPreference === 'disabled' ? false
+             : prefersDark;
 
   body.classList.toggle('dark-mode', isDark);
   updateIcon(isDark);
 
   if (toggle) {
     toggle.addEventListener('click', () => {
-      isDark = !body.classList.contains('dark-mode');
+      isDark = !isDark;
       body.classList.toggle('dark-mode', isDark);
       localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
       updateIcon(isDark);
     });
   }
+
+  setTimeout(() => body.classList.add('transition'), 100);
 });

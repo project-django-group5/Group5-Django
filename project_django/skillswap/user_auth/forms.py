@@ -13,14 +13,13 @@ class UserForm(forms.ModelForm):
 
     class Meta():
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('username', 'email', 'password',)
 
 
 class RegistrationForm(forms.ModelForm):
     class Meta():
         model = UserDetail
-        fields = ('description', 'skills_offered',
-                  'skills_needed', 'profile_pic')
+        fields = ('description','location','availability', 'profile_pic')
 
 
 
