@@ -320,28 +320,68 @@ transform: scale(1.1);
 }
 
 
+/* INTERACTIVE STAR INPUT (for forms) */
 .star-rating {
     direction: rtl;
     unicode-bidi: bidi-override;
     display: inline-flex;
     gap: 5px;
 }
-
 .star-rating input[type="radio"] {
     display: none;
 }
-
 .star-rating label {
     font-size: 2rem;
     color: #ccc;
     cursor: pointer;
     transition: color 0.2s;
 }
-
 .star-rating input:checked ~ label,
 .star-rating label:hover,
 .star-rating label:hover ~ label {
     color: gold;
 }
 
+/* READ-ONLY DISPLAY STARS (average/user reviews) */
+.static-star-rating {
+    display: inline-block;
+    direction: ltr;
+    font-size: 0; /* Remove gap between inline elements */
+}
+.static-star-rating .star {
+    font-size: 2rem;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    position: relative;
+    color: lightgray;
+    font-family: inherit;
+}
+.static-star-rating .star.full {
+    color: gold;
+}
+.static-star-rating .star.empty {
+    color: lightgray;
+}
+.static-star-rating .star.half {
+    color: lightgray;
+}
+.static-star-rating .star.half::before {
+    content: '★';
+    color: gold;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: left;
+    vertical-align: middle;
+    box-sizing: border-box;
+    font-family: inherit;
+}
 

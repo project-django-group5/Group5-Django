@@ -33,10 +33,13 @@
           {% if skill.average_rating %}
           <div class="mb-2">
             <p>
-              Average Rating: <span style="color: gold;">{{ skill.average_rating|star_rating }}</span>
-              ({{ skill.review_count }} reviews)
+              Average Rating:
+              <span class="static-star-rating">
+                {{ skill.average_rating|star_rating }}
+              </span>
+              ({{ skill.review_count }} review{{ skill.review_count|pluralize }})
             </p>
-            <small class="text-muted">({{ skill.review_count }} review{{ skill.review_count|pluralize }})</small>
+            
           </div>
           {% else %}
           <div class="mb-2 text-muted">
