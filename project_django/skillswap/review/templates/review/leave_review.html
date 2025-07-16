@@ -21,7 +21,7 @@
 
       <form method="POST" novalidate>
         {% csrf_token %}
-
+        <input type="hidden" name="next" value="{{ next_url }}">
         <div class="form-group mb-4">
           <label class="form-label">Your Rating</label>
           {{ form.rating }}
@@ -39,7 +39,7 @@
 
         <div class="d-flex justify-content-between flex-wrap gap-2">
           <button type="submit" class="btn btn-primary">Submit Review</button>
-          <a href="{% url 'skill_detail' skill.id %}" class="btn btn-outline-secondary">Cancel</a>
+          <a href="{{ next_url }}" class="btn btn-outline-secondary">Cancel</a>
         </div>
       </form>
 

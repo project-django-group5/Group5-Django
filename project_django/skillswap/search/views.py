@@ -59,9 +59,11 @@ def skill_detail(request, pk):
             reviewer=request.user,
             skill=skill
         ).exists()
+    next_page = request.GET.get('next', 'skill_list')
 
     return render(request, 'search/skill_detail.html', {
         'skill': skill,
         'reviews': reviews,
         'has_reviewed': has_reviewed,
+        'next_page': next_page
     })
