@@ -53,8 +53,15 @@ def skill_detail(request, pk):
 
     reviews = Review.objects.filter(skill=skill).select_related('reviewer')
 
+    has_reviewed = False
+    if request.user.is_authenticated:
+        has_reviewed = Review.objects.filter(
+            reviewer=request.user,
+            skill=skill
+        ).exists()
+
     return render(request, 'search/skill_detail.html', {
         'skill': skill,
-        'reviews': reviews
+        'reviews': reviews,
+        'has_reviewed': has_reviewed,
     })
-

@@ -45,7 +45,7 @@
           {% endif %}
           <div>
             {% if user.is_authenticated %}
-              {% if user != skill.user and  skill.review_count <= 0 %}
+              {% if user != skill.user and not skill.has_reviewed %}
                 <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-primary">
                     Leave a Review
                 </a>

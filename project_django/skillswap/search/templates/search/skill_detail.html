@@ -56,13 +56,10 @@
                             <small class="text-muted">on {{ skill.created|date:"F j, Y" }}</small>
                         </div>
                     
-                        {% if user.is_authenticated and user != skill.user  %}
-                            {% if skill.review_count <= 0 %}
+                        {% if user.is_authenticated and user != skill.user and not has_reviewed %}
                             <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}" class="btn btn-primary">
                                 Leave a Review
-                            </a>
-                            {% endif %}
-                            
+                            </a>                
                         {% elif user == skill.user %}
                             <p><em>You can't review your own skill.</em></p>
                         {% else %}
