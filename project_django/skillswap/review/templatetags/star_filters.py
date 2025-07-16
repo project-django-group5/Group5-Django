@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
-@register.filter
+@register.filter("star_rating")
 def star_rating(value):
     try:
         value = float(value)
@@ -23,3 +23,4 @@ def star_rating(value):
     html += '<i class="far fa-star text-warning"></i>' * empty
 
     return mark_safe(html)
+

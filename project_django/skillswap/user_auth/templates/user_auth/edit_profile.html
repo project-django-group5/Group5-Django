@@ -1,17 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Edit Profile | SkillSwap{% endblock %}
+
 {% block content %}
-<div class="container py-4">
-  <div class="card shadow-lg p-4">
-    <h2>Edit Your Profile</h2>
-    <form method="post" enctype="multipart/form-data">
+<div class="container py-5">
+  <div class="card shadow-lg rounded-4 p-4 mx-auto" style="max-width: 600px;">
+    <h2 class="mb-4 fw-bold">Edit Your Profile</h2>
+    <form method="post" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
-      {{ detail_form.as_p }}
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-      <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+      
+      <div class="row g-3">
+        {% for field in detail_form %}
+          <div class="col-12">
+            <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
+            
+            {% if field.name == "profile_picture" %}
+              <div class="mb-3">
+                <div class="border rounded p-3 bg-light d-flex justify-content-center align-items-center" style="min-height: 150px;">
+                  <span class="text-muted">📷 Upload your profile picture</span>
+                </div>
+              </div>
+            {% endif %}
+            {% render_field field class="form-control rounded-2xl" placeholder=field.label %}
+            {% if field.help_text %}
+              <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% if field.errors %}
+              <div class="text-danger small mt-1">{{ field.errors }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-success rounded-pill px-4">Save Changes</button>
+        <a href="{% url 'profile' %}" class="btn btn-outline-secondary rounded-pill px-4">Cancel</a>
+      </div>
     </form>
   </div>
 </div>
 {% endblock %}
-
-
