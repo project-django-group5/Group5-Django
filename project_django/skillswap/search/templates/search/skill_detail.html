@@ -1,90 +1,101 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 {% load star_filters %}
+
 {% block title %}{{ skill.title }} | SkillSwap{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-lg border-0 rounded-2xl">
-                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center rounded-top">
-                    <h3 class="mb-0">{{ skill.title }}</h3>
-                    <span class="badge badge-light text-primary">{{ skill.get_skill_type_display }}</span>
-                </div>
-                <div class="card-body p-4">
-                    <div class="mb-3">
-                        <p class="mb-1 text-muted">Category</p>
-                        <h5>{{ skill.category }}</h5>
-                    </div>
-                    <div class="mb-3">
-                        <p class="mb-1 text-muted">Description</p>
-                        <p class="text-dark">{{ skill.description|linebreaksbr }}</p>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-6">
-                            <p class="mb-1 text-muted">Availability</p>
-                            <p>{{ skill.availability }}</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-1 text-muted">Location</p>
-                            <p>{{ skill.location|default:"Not specified" }}</p>
-                        </div>
-                    </div>
-                    {% if skill.average_rating %}
-                        <p>
-                            Average Rating:
-                            <span class="static-star-rating">
-                                {{ skill.average_rating|star_rating }}
-                            </span>
-                            ({{ skill.review_count }} review{{ skill.review_count|pluralize }})
-                        </p>
-                    {% else %}
-                        <p>No reviews yet for this skill.</p>
-                    {% endif %}
-                    <hr>
-                    <h3>User Reviews:</h3>
-                    {% if reviews %}
-                        {% for review in reviews %}
-                            <div class="review mb-3">
-                                <p><strong>{{ review.reviewer.username }}:</strong></p>
-                                <div class="static-star-rating mb-2">
-                                    {{ review.rating|star_rating }}
-                                </div>
-                                
-                                <p>{{ review.comment }}</p>
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <p>No reviews yet for this skill.</p>
-                    {% endif %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-9">
 
-                    <hr>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <p class="mb-1 text-muted">Posted by</p>
-                            <p class="mb-0 font-weight-bold">{{ skill.user.username }}</p>
-                            <small class="text-muted">on {{ skill.created|date:"F j, Y" }}</small>
-                        </div>
-                    
-                        {% if user.is_authenticated and user != skill.user and not has_reviewed %}
-                            <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}?next={{ request.get_full_path|urlencode }}" class="btn btn-primary">
-                                Leave a Review
-                            </a>                
-                        {% endif %}
-
-                        <div>
-                            <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-success">
-                                📧 Contact Me
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer text-right bg-white border-top-0">
-                    <a href="{% url next_page %}" class="btn btn-secondary">← Back</a></a>
-                </div>
-            </div>
+      <div class="card shadow-lg rounded-2xl border-0 overflow-hidden">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+          <h3 class="mb-0">{{ skill.title }}</h3>
+          <span class="badge badge-light text-primary">{{ skill.get_skill_type_display }}</span>
         </div>
+
+        <div class="card-body p-4">
+          <div class="mb-4">
+            <p class="text-muted mb-1">Category</p>
+            <h5 class="mb-0">{{ skill.category }}</h5>
+          </div>
+
+          <div class="mb-4">
+            <p class="text-muted mb-1">Description</p>
+            <p class="mb-0">{{ skill.description|linebreaksbr }}</p>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <p class="text-muted mb-1">Availability</p>
+              <p class="mb-0">{{ skill.availability }}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="text-muted mb-1">Location</p>
+              <p class="mb-0">{{ skill.location|default:"Not specified" }}</p>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            {% if skill.average_rating %}
+              <p class="mb-1">Average Rating:
+                <span class="text-warning">{{ skill.average_rating|star_rating }}</span>
+                <small class="text-muted">({{ skill.review_count }} review{{ skill.review_count|pluralize }})</small>
+              </p>
+            {% else %}
+              <p class="text-muted">No reviews yet for this skill.</p>
+            {% endif %}
+          </div>
+
+          <hr>
+
+          <h4 class="mb-3">User Reviews</h4>
+          {% if reviews %}
+            {% for review in reviews %}
+              <div class="review border-left pl-3 mb-4">
+                <p class="mb-1">
+                  <strong>{{ review.reviewer.username }}</strong>
+                  <span class="ml-2 text-warning">{{ review.rating|star_rating }}</span>
+                </p>
+                <p class="mb-0">{{ review.comment }}</p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-muted">No reviews yet for this skill.</p>
+          {% endif %}
+
+          <hr>
+
+          <div class="d-flex flex-wrap justify-content-between align-items-center mt-4 gap-2">
+            <div>
+              <p class="mb-1 text-muted">Posted by</p>
+              <p class="mb-0 font-weight-bold">{{ skill.user.username }}</p>
+              <small class="text-muted">on {{ skill.created|date:"F j, Y" }}</small>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+              {% if user.is_authenticated and user != skill.user and not has_reviewed %}
+                <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}?next={{ request.get_full_path|urlencode }}"
+                   class="btn btn-outline-primary">
+                  ⭐ Leave a Review
+                </a>
+              {% endif %}
+
+              <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-outline-success">
+                📧 Contact Me
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white text-right border-top-0">
+          <a href="{% url next_page %}" class="btn btn-secondary">← Back</a>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 {% endblock %}

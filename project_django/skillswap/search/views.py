@@ -4,44 +4,51 @@ from skill.models import Skill
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg, Count
 from review.models import Review 
+from .forms import SkillSearchForm
 
 def skill_search(request):
-    title = request.GET.get('title')
-    location = request.GET.get('location')
-    category = request.GET.get('category')
-    skill_type = request.GET.get('skill_type')
-    availability = request.GET.get('availability')
-
     skills = Skill.objects.all()
 
-    filters = Q()
-    if title:
-        filters &= Q(title__icontains=title)
-    if location:
-        filters &= Q(location__icontains=location)
-    if category:
-        filters &= Q(category__icontains=category)
-    if skill_type:
-        filters &= Q(skill_type__icontains=skill_type)
-    if availability:
-        filters &= Q(availability__icontains=availability)
+    categories = Skill.objects.values_list('category', flat=True).distinct()
+    titles = Skill.objects.values_list('title', flat=True).distinct()
+    locations = Skill.objects.values_list('location', flat=True).exclude(location='').distinct()
+    availabilities = Skill.objects.values_list('availability', flat=True).distinct()
 
-    skills = skills.filter(filters).annotate(average_rating=Avg('review__rating'), review_count=Count('review'))
+    dynamic_choices = {
+        'categories': categories,
+        'titles': titles,
+        'locations': locations,
+        'availabilities': availabilities,
+    }
 
-    all_titles = Skill.objects.values_list('title', flat=True).distinct()
-    all_categories = Skill.objects.values_list('category', flat=True).distinct()
-    all_locations = Skill.objects.values_list('location', flat=True).distinct()
-    all_types = Skill.objects.values_list('skill_type', flat=True).distinct()
-    all_availabilities = Skill.objects.values_list('availability', flat=True).distinct()
+    form = SkillSearchForm(request.GET or None, dynamic_choices=dynamic_choices)
 
-    return render(request, 'search/skill_search.html', {
+    if form.is_valid():
+        cd = form.cleaned_data
+
+        if cd.get('skill_type'):
+            skills = skills.filter(skill_type=cd['skill_type'])
+
+        if cd.get('category'):
+            skills = skills.filter(category=cd['category'])
+
+        if cd.get('title'):
+            skills = skills.filter(title=cd['title'])
+
+        if cd.get('location'):
+            skills = skills.filter(location=cd['location'])
+
+        if cd.get('availability'):
+            skills = skills.filter(availability=cd['availability'])
+
+    skills = skills.annotate(average_rating=Avg('review__rating'), review_count=Count('review'))
+
+    context = {
         'skills': skills,
-        'all_titles':all_titles,
-        'all_categories': all_categories,
-        'all_locations': all_locations,
-        'all_types': all_types,
-        'all_availabilities': all_availabilities,
-    })
+        'search_form': form,
+    }
+    return render(request, 'search/skill_search.html', context)
+
 
 
 @login_required
