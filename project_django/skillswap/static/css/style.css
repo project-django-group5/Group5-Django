@@ -5,11 +5,12 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 body {
-  background: linear-gradient(to right, #fefcea, #f1daff);
+  background: linear-gradient(to right, #fefcea, #f1daff); 
+  transition: background 0.5s ease;
 }
 
-body .dark-mode {
-  background: linear-gradient(33deg, rgba(28,28,40,1) 0%, rgba(18,28,38,1) 100%);
+body.dark-mode {
+  background: linear-gradient(to right, #1a1a1a, #2a2a2a); 
 }
 
 .transition, .transition * {
