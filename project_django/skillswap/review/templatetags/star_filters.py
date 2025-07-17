@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
-@register.filter
+@register.filter("star_rating")
 def star_rating(value):
     try:
         value = float(value)
@@ -17,9 +17,10 @@ def star_rating(value):
         half = 0
     empty = 5 - full - half
 
-    html = '<span class="star full">★</span>' * full
+    html = '<i class="fas fa-star text-warning"></i>' * full
     if half:
-        html += '<span class="star half">★</span>'
-    html += '<span class="star empty">★</span>' * empty
+        html += '<i class="fas fa-star-half-alt text-warning"></i>'
+    html += '<i class="far fa-star text-warning"></i>' * empty
 
     return mark_safe(html)
+

@@ -4,97 +4,128 @@
 {% block title %}Home - SkillSwap{% endblock %}
 
 {% block content %}
+<!-- ------------carousel------- -->
+<section class="mb-5 mt-5">
+  <div id="skillCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2500">
+    <ol class="carousel-indicators">
+      <li data-target="#skillCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#skillCarousel" data-slide-to="1"></li>
+      <li data-target="#skillCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'images/carousel_img1.jpg' %}" class="d-block w-100" alt="Find Skills That Inspire You" class="carousel_img">
+        <div class="overlay"></div>
+        <div class="carousel-content">
+          <h2 class="display-4">Find Skills That Inspire You</h2>
+          <p class="lead px-3 px-md-5">
+            A world of possibilities — from music and tech to cooking and design. Discover what you love and learn from
+            people around you.
+          </p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="{% static 'images/carousel_img2.jpeg' %}" alt="Offer What You Know" class="carousel_img">
+        <div class="overlay"></div>
+        <div class="carousel-content">
+          <h2 class="display-4">Offer What You Know</h2>
+          <p class="lead px-3 px-md-5">
+            Whether it's baking sourdough or building websites, share your expertise and help others grow.
+          </p>
+        </div>
+      </div>
 
 
-<section class="hero" style="background: url('{% static "images/bgimage.jpg" %}') no-repeat center center/cover;" >
+      <div class="carousel-item">
+        <img src="{% static 'images/carousel_img3.png' %}" alt="Exchange, Learn, Grow Together" class="carousel_img">
+        <div class="overlay"></div>
+        <div class="carousel-content">
+          <h2 class="display-4">Exchange, Learn, Grow Together</h2>
+          <p class="lead px-3 px-md-5">
+            Swap what you know for what you want to learn. Build connections, grow new skills, and be part of a
+            community that learns together.
+          </p>
+        </div>
+      </div>
+    </div>
 
-    
-        <h1 data-aos="fade-down">🌟 Welcome to SkillSwap</h1>
-        <p data-aos="fade-up">Find, offer, and exchange skills with others!<br>
-            SkillSwap is your community-driven platform to share what you know and learn what you love. Whether you're a guitar whiz, a coding pro, a cooking enthusiast — or just curious to learn something new — this is the place for you.
-        </p>
+    <a class="carousel-control-prev" href="#skillCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#skillCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 </section>
 
-
-<section class="section" >
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <h2 class="icon">🔁 How It Works</h2>
-            <p><strong>Create Your Profile</strong><br>Sign up and tell us what skills you offer and what you'd like to learn.</p>
-            <p><strong>Browse Skills</strong><br>Explore a wide range of skills shared by users — from music and art to languages and technology.</p>
-            <p><strong>Connect & Swap</strong><br>Contact other users, arrange a session, and grow your knowledge.</p>
-            <p><strong>Rate & Review</strong><br>After each session, leave feedback to help others in the community.</p>
-        </div>
-        <div class="col-md-6 text-center">
-            <img src="{% static 'images/skill_laptop.jpg' %}" alt="How it works" data-aos="zoom-in">
-        </div>
+<section class="section container">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <h2 class="icon mb-4">🔁 How It Works</h2>
+      <p><strong>Create Your Profile</strong><br>Sign up and tell us what skills you offer and what you'd like to learn.</p>
+      <p><strong>Browse Skills</strong><br>Explore a wide range of skills shared by users — from music and art to languages and technology.</p>
+      <p><strong>Connect & Swap</strong><br>Contact other users, arrange a session, and grow your knowledge.</p>
+      <p><strong>Rate & Review</strong><br>After each session, leave feedback to help others in the community.</p>
     </div>
+    <div class="col-md-6 text-center">
+      <img src="{% static 'images/skill_laptop.jpg' %}" alt="How it works" class="img-fluid rounded shadow" loading="lazy" data-aos="zoom-in">
+    </div>
+  </div>
 </section>
 
-
-
-<section class="section">
-    <div class="row align-items-center flex-row-reverse" data-aos="fade-right" data-aos-delay="300">
-
-        <div class="col-md-6">
-            <h2 class="icon">💡 Why Use SkillSwap?</h2>
-            <p><strong>It's free to use</strong></p>
-            <p><strong>Find local or remote skill swaps</strong></p>
-            <p><strong>Build your resume by teaching others</strong></p>
-            <p><strong>Discover hobbies, level up, or make new friends</strong></p>
-        </div>
-        <div class="col-md-6 text-center">
-            <img src="{% static 'images/skill_share.jpg' %}" alt="Why use SkillSwap" data-aos="zoom-in-left">
-        </div>
+<section class="section container mt-5">
+  <div class="row align-items-center flex-md-row-reverse" data-aos="fade-right" data-aos-delay="300">
+    <div class="col-md-6">
+      <h2 class="icon mb-4">💡 Why Use SkillSwap?</h2>
+      <p><strong>It's free to use</strong></p>
+      <p><strong>Find local or remote skill swaps</strong></p>
+      <p><strong>Build your resume by teaching others</strong></p>
+      <p><strong>Discover hobbies, level up, or make new friends</strong></p>
     </div>
+    <div class="col-md-6 text-center">
+      <img src="{% static 'images/skill_share.jpg' %}" alt="Why use SkillSwap" class="img-fluid rounded shadow" loading="lazy" data-aos="zoom-in-left">
+    </div>
+  </div>
 </section>
 
 <div class="container my-5">
   <div class="row text-center">
-    <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-delay="250">
+    {% for card in cards %}
+    <div class="col-md-4 mb-4" data-aos="{{ card.aos_animation }}" data-aos-delay="{{ card.aos_delay }}">
       <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
-        <img src="{% static 'images/skillsteps.png' %}" class="card-img-top" alt="learn explore grow">
-        <div class="card-body ">
-          <i class="bi bi-leaf fs-1 text-primary mb-3"></i>
-          <h5 class="fw-bold">Grow Through Teaching</h5>
-          <p class="text-muted">Share your expertise and boost your skills by helping others.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
-      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
-        <img src="{% static 'images/skill_swap.jpg' %}" class="card-img-top" alt="swap skills">
+        <img src="{% static card.img %}" class="card-img-top" alt="{{ card.alt }}">
         <div class="card-body">
-          <i class="bi bi-arrow-repeat fs-1 text-primary mb-3"></i>
-          <h5 class="fw-bold">Swap Skills Effortlessly</h5>
-          <p class="text-muted">Find partners based on interest, location, and availability.</p>
+          <i class="bi {{ card.icon }} fs-1 text-primary mb-3"></i>
+          <h5 class="fw-bold">{{ card.title }}</h5>
+          <p class="text-muted">{{ card.desc }}</p>
         </div>
       </div>
     </div>
-
-    <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="250">
-      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
-        <img src="{% static 'images/skill.jpg' %}" class="card-img-top" alt="learning is important">
-        <div class="card-body">
-          <i class="bi bi-airplane fs-1 text-primary mb-3"></i>
-          <h5 class="fw-bold">Learn What Matters</h5>
-          <p class="text-muted">Get practical knowledge from real practitioners.</p>
-        </div>
-      </div>
-    </div>
+    {% empty %}
+      <p>No cards to show.</p>
+    {% endfor %}
   </div>
 </div>
 
-
-<section class="cta" data-aos="zoom-in" data-aos-delay="400">
-
-    <h2>🚀 Ready to get started?</h2>
-    <p>👉 <strong>Sign Up Now</strong> or <strong>Log In</strong> to join the SkillSwap community</p>
-    <div>
-        <a href="{% url 'register' %}">Sign Up</a>
-        <a href="{% url 'login' %}">Log In</a>
-    </div>
+<section class="cta bg-primary text-white text-center py-5" data-aos="zoom-in" data-aos-delay="400">
+  <h2>🚀 Ready to get started?</h2>
+  {% if user.is_authenticated %}
+    <p class="lead">
+      👉 <strong><a href="{% url 'skill_add' %}" class="text-white font-weight-bold">Share your skills on SkillSwap</a></strong>,
+      or <strong><a href="{% url 'skill_list' %}" class="text-white font-weight-bold">discover skill-sharing opportunities</a></strong>
+      with learners and experts from around the world.
+    </p>
+  {% else %}
+    <p class="lead">
+      👉 <strong><a href="{% url 'register' %}" class="text-white font-weight-bold">Join SkillSwap for free</a></strong> and start
+      sharing what you know — or <strong><a href="{% url 'login' %}" class="text-white font-weight-bold">log in</a></strong>
+      to explore new skills, connect with passionate people, and grow through community learning.
+    </p>
+  {% endif %}
 </section>
- 
+
 {% endblock %}
