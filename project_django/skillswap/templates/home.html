@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load widget_tweaks %}
 
 {% block title %}Home - SkillSwap{% endblock %}
 
 {% block content %}
 <!-- ------------carousel------- -->
 <section class="mb-5 mt-5">
-  <div id="skillCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+  <div id="skillCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
     <ol class="carousel-indicators">
       <li data-target="#skillCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#skillCarousel" data-slide-to="1"></li>
@@ -81,7 +80,7 @@
 </section>
 
 <section class="section container mt-5">
-  <div class="row align-items-center flex-md-row-reverse">
+  <div class="row align-items-center flex-md-row-reverse" data-aos="fade-right" data-aos-delay="300">
     <div class="col-md-6">
       <h2 class="icon mb-4">💡 Why Use SkillSwap?</h2>
       <p><strong>It's free to use</strong></p>
@@ -109,44 +108,17 @@
       </div>
     </div>
     {% empty %}
-    {# fallback static cards if no context provided #}
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
-        <img src="{% static 'images/skillsteps.png' %}" class="card-img-top" alt="learn explore grow">
-        <div class="card-body">
-          <i class="bi bi-leaf fs-1 text-primary mb-3"></i>
-          <h5 class="fw-bold">Grow Through Teaching</h5>
-          <p class="text-muted">Share your expertise and boost your skills by helping others.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
-        <img src="{% static 'images/skill_swap.jpg' %}" class="card-img-top" alt="swap skills">
-        <div class="card-body">
-          <i class="bi bi-arrow-repeat fs-1 text-primary mb-3"></i>
-          <h5 class="fw-bold">Swap Skills Effortlessly</h5>
-          <p class="text-muted">Find partners based on interest, location, and availability.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm rounded-4 border-0 p-4">
-        <img src="{% static 'images/skill.jpg' %}" class="card-img-top" alt="learning is important">
-        <div class="card-body">
-          <i class="bi bi-airplane fs-1 text-primary mb-3"></i>
-          <h5 class="fw-bold">Learn What Matters</h5>
-          <p class="text-muted">Get practical knowledge from real practitioners.</p>
-        </div>
-      </div>
-    </div>
+      <p>No cards to show.</p>
     {% endfor %}
   </div>
 </div>
 
 <section class="cta bg-primary text-white text-center py-5" data-aos="zoom-in" data-aos-delay="400">
   <h2>🚀 Ready to get started?</h2>
-  <p class="lead">👉 <strong><a href="{% url 'register' %}" class="text-white font-weight-bold">Sign Up Now</a></strong> or <strong><a href="{% url 'login' %}" class="text-white font-weight-bold">Log In</a></strong> to join the SkillSwap community</p>
+  <p class="lead">👉 <strong><a href="{% url 'register' %}" class="text-white font-weight-bold">Sign Up Now</a></strong>
+  or <strong><a href="{% url 'login' %}" class="text-white font-weight-bold">Log In</a></strong>
+  to join the SkillSwap community
+  </p>
 </section>
 
 {% endblock %}
