@@ -2,17 +2,24 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}about - SkillSwap{% endblock %}
-
 {% block content %}
-<section class="about_hero"style="background: url('{% static "images/about_bg.jpg"%}') no-repeat center center/cover;" data-aos="fade-down">
-    <h1 data-aos="fade-down">🚀About SkillSwap</h1>
-        <p data-aos="fade-up"> 
-            SkillSwap is a friendly, community-powered platform where anyone can share what they know and learn what they’ve always wanted to.
-            Whether you’re an expert in your craft or just starting out, this is your space to connect, grow, and support one another.
-            Here at SkillSwap, we believe learning should be accessible, social, and enjoyable.
-            From creative arts to coding, from cooking to public speaking — we’ve made it easy for you to meet like-minded people, exchange knowledge, and build something meaningful together.
-        </p>
-</section>
+<section class="about_section1">
+  <div class="row align-items-center flex-row-reverse" data-aos="fade-right" data-aos-delay="300">
+        <div class="col-md-6">
+            <h2 class="icon">🚀About SkillSwap </h2>
+            <p data-aos="fade-up">
+              SkillSwap is a friendly, community-powered platform where anyone can share what they know and learn what they’ve always wanted to.
+              Whether you’re an expert in your craft or just starting out, this is your space to connect, grow, and support one another.
+              Here at SkillSwap, we believe learning should be accessible, social, and enjoyable.
+              From creative arts to coding, from cooking to public speaking — we’ve made it easy for you to meet like-minded people, exchange knowledge, and build something meaningful together.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images/about.jpg' %}" alt="Who We Are" data-aos="zoom-in">
+        </div>
+  </div>     
+</section> 
+
 <section class="about_section1">
     <div class="row align-items-center">
         <div class="col-md-6">
@@ -70,7 +77,7 @@
 </section>
 
 
-<section class="text-center py-5" style="background-color: #8bcfe7;">
+<section class="cta bg-primary text-white text-center py-5" style="background-color: #8bcfe7;">
   <div class="container">
     <h2 class="mb-3" data-aos="fade-up">✨ Keep Swapping. Keep Growing.</h2>
     <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
