@@ -1,62 +1,33 @@
+
 {% extends 'base.html' %}
 {% load static %}
-{% load widget_tweaks %}
-{% block title %}Register | SkillSwap{% endblock %}
-
 {% block content %}
 <div class="container py-5">
   <div class="row justify-content-center">
-    <div class="col-md-10 col-lg-8 col-xl-6">
-      <div class="card shadow-lg rounded-4 p-4 p-md-5">
-        <h3 class="text-center mb-4 fw-bold">Create Your SkillSwap Account</h3>
+    <div class="col-lg-10"> 
+      <div class="card shadow p-5">
+        <h3 class="text-center mb-4">Create Your SkillSwap Account</h3>
 
-        <form method="POST" enctype="multipart/form-data" novalidate>
+        <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
 
-          <h5 class="mb-3">Account Info</h5>
-          <div class="row">
-            {% for field in user_form %}
-              <div class="col-md-6 mb-3">
-                <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
-                {% render_field field class="form-control rounded-pill" placeholder=field.label %}
-                {% if field.help_text %}
-                  <small class="form-text text-muted">{{ field.help_text }}</small>
-                {% endif %}
-                {% if field.errors %}
-                  <div class="text-danger small mt-1">{{ field.errors }}</div>
-                {% endif %}
-              </div>
-            {% endfor %}
-          </div>
+          <h5>Account Info</h5>
+          {{ user_form.as_p }}
 
           <hr>
+          <h5>Profile Info</h5>
+          {{ profile_form.as_p }}
 
-          <h5 class="mb-3">Profile Info</h5>
-          <div class="row">
-            {% for field in profile_form %}
-              <div class="col-md-6 mb-3">
-                <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
-                {% render_field field class="form-control rounded-2xl" placeholder=field.label %}
-                {% if field.help_text %}
-                  <small class="form-text text-muted">{{ field.help_text }}</small>
-                {% endif %}
-                {% if field.errors %}
-                  <div class="text-danger small mt-1">{{ field.errors }}</div>
-                {% endif %}
-              </div>
-            {% endfor %}
-          </div>
-
-          <button type="submit" class="btn btn-success w-100 rounded-pill py-2 mt-4">
-            Register
-          </button>
+          <button type="submit" class="btn btn-success btn-block mt-3">Register</button>
         </form>
 
         <p class="mt-4 text-center">
-          Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Log in</a>
+          Already have an account? <a href="{% url 'login' %}">Log in</a>
         </p>
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}
+
