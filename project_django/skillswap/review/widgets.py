@@ -15,3 +15,4 @@ class StarRadioSelect(RadioSelect):
             '''
             output.append(html)
         return mark_safe('<div class="star-rating">' + ''.join(output) + '</div>')
+    
