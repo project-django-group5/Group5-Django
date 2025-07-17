@@ -1,52 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% load star_filters %}
 
 {% block content %}
-<div class="container my-5">
-  <div class="row justify-content-center">
-    <div class="col-md-10 col-lg-8">
+<div class="container mt-4">
+    <h2 class="mb-3">Leave a Review</h2>
 
-      <h2 class="text-center mb-4">Leave a Review</h2>
-
-      <div class="card shadow-sm transition mb-4">
+    <div class="card mb-4">
         <div class="card-body">
-          <h5 class="card-title">{{ skill.title }}</h5>
-          <p class="card-text">
-            You're reviewing <strong>{{ receiver.get_full_name|default:receiver.username }}</strong>
-          </p>
+            <h5 class="card-title">{{ skill.title }}</h5>
+            <p class="card-text">
+                You're reviewing <strong>{{ receiver.get_full_name|default:receiver.username }}</strong>
+            </p>
         </div>
-      </div>
-
-      <form method="POST" novalidate>
-        {% csrf_token %}
-        {% if next_url %}
-          <input type="hidden" name="next" value="{{ next_url }}">
-        {% endif %}
-
-        <div class="form-group mb-4">
-          <label for="id_rating" class="form-label">Your Rating</label>
-          {{ form.rating }}
-          {% if form.rating.errors %}
-            <div class="text-danger small mt-1">{{ form.rating.errors }}</div>
-          {% endif %}
-        </div>
-
-        <div class="form-group mb-4">
-          {{ form.comment|add_class:"form-control stylish-select" }}
-          {% if form.comment.errors %}
-            <div class="text-danger small mt-1">{{ form.comment.errors }}</div>
-          {% endif %}
-        </div>
-
-        <div class="d-flex justify-content-between flex-wrap gap-2">
-          <button type="submit" class="btn btn-primary">Submit Review</button>
-          <a href="{{ next_url|default:'#' }}" class="btn btn-outline-secondary">Cancel</a>
-        </div>
-      </form>
-
     </div>
-  </div>
+
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Rating</label><br>
+            {{ form.rating }}
+        </div>
+
+        <div class="mb-3">
+            {% comment %} <label for="{{ form.comment.id_for_label }}" class="form-label">Comment</label> {% endcomment %}
+            {{ form.comment }}
+            {% if form.comment.errors %}
+                <div class="text-danger">{{ form.comment.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+        <a href="{% url 'skill_detail' skill.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
 </div>
 {% endblock %}
