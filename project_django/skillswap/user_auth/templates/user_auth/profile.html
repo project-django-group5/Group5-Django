@@ -27,8 +27,8 @@
         <h3 class="mb-1 font-weight-bold">{{ user.username }}</h3>
         <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
         <p class="text-muted mb-2">{{ user.userdetail.description|default:"No description available." }}</p>
-        <p class="mb-1"><strong>Location:</strong> {{ user.profile.location|default:"Not specified" }}</p>
-        <p class="mb-3"><strong>Availability:</strong> {{ user.profile.availability|default:"Not specified" }}</p>
+        <p class="mb-1"><strong>Location:</strong> {{ user.userdetail.location|default:"Not specified" }}</p>
+        <p class="mb-3"><strong>Availability:</strong> {{ user.userdetail.availability|default:"Not specified" }}</p>
         <a href="{% url 'profile_edit' %}" class="btn btn-outline-secondary btn-sm rounded-pill px-4">Edit Profile</a>
       </div>
     </div>
