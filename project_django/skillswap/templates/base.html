@@ -38,17 +38,22 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'skill_search' %}">Search</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'skill_list' %}">Skills List</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'skill_add' %}">Post a Skill</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">My Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Sign up</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                     {% endif %}
-                    {% if request.user.is_authenticated and request.user.is_staff %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
-                    {% endif %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About us</a></li>
                 </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">My Profile</a></li>
+                    {% if request.user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin Dashboard</a></li>
+                    {% endif %}
+                    <li class="nav-item "><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% endif %}
+                </ul>
+                 
                 <button id="darkModeToggle" class="btn btn-sm emoji-toggle ml-4" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
             </div>
         </div>
