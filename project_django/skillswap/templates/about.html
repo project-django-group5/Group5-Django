@@ -1,52 +1,97 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}About | SkillSwap{% endblock %}
+{% block title %}about - SkillSwap{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-  <div class="row align-items-center">
-    <div class="col-12 col-md-6">
-      <h1 class="mb-4">🌟 About SkillSwap!</h1>
-      <p class="lead">
-        SkillSwap is a Django-based web platform developed by a team of learners.
-      </p>
 
-      <section class="mb-4">
-        <h5>👥 Team Members</h5>
-        <ul class="list-unstyled pl-3">
+<section class="about_section1 py-5">
+  <div class="container">
+    <div class="row align-items-center flex-row-reverse" data-aos="fade-right" data-aos-delay="300">
+      <div class="col-md-6">
+        <h2 class="icon mb-4">🚀 About SkillSwap</h2>
+        <p>
+          SkillSwap is a friendly, community-powered platform where anyone can share what they know and learn what they’ve always wanted to.
+          Whether you’re an expert in your craft or just starting out, this is your space to connect, grow, and support one another.
+          We believe learning should be accessible, social, and enjoyable. From creative arts to coding, from cooking to public speaking —
+          we’ve made it easy for you to meet like-minded people, exchange knowledge, and build something meaningful together.
+        </p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{% static 'images/about.jpg' %}" alt="Who We Are" class="img-fluid rounded shadow" data-aos="zoom-in">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about_section1 py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2 class="icon mb-4">🧑‍💻 Who We Are</h2>
+        <p><strong>Built by Learners</strong><br>We’re a team of students who created SkillSwap to turn learning into a shared, community experience.</p>
+        <p><strong>Passionate About People</strong><br>We believe everyone has something to teach — and we wanted to build a space where that knowledge can be shared freely.</p>
+        <p><strong>More Than Just a Project</strong><br>SkillSwap started as a college project, but quickly became something we are proud to offer to anyone, anywhere.</p>
+        <p><strong>Learning Together</strong><br>At the heart of SkillSwap is connection — where people grow by sharing what they know and learning something new in return.</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{% static 'images/working_together.jpg' %}" alt="Who We Are" class="img-fluid rounded shadow" data-aos="zoom-in">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about_section1 py-5">
+  <div class="container">
+    <div class="row align-items-center flex-row-reverse" data-aos="fade-right" data-aos-delay="300">
+      <div class="col-md-6">
+        <h2 class="icon mb-4">🤝 Skills You Can Share and Learn</h2>
+        <ul class="fs-5" style="line-height: 1.8;">
+          <li>• Creative arts like painting, photography, and writing</li>
+          <li>• Technical skills such as coding, web design, and data analysis</li>
+          <li>• Practical skills including cooking, gardening, and DIY projects</li>
+          <li>• Languages, music, fitness, and many other interests</li>
+        </ul>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{% static 'images/share_and_learn.jpg' %}" alt="Skills You Can Share and Learn" class="img-fluid rounded shadow" data-aos="zoom-in-left">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about_section1 py-5">
+  <div class="container">
+    <div class="row align-items-center" data-aos="fade-left" data-aos-delay="300">
+      <div class="col-md-6">
+        <h2 class="icon mb-4">🏢 Meet the Team</h2>
+        <p><strong>A passionate group of students who brought SkillSwap to life.</strong></p>
+        <ul class="list-unstyled fs-5" style="line-height: 1.8;">
           <li>• Ayisha Ameer</li>
           <li>• Elaiyarani Soundararajan</li>
           <li>• Judith Soundarya Joseph</li>
           <li>• Kanimozhi Sangapillai</li>
           <li>• Sowmya Ayarottupura Velayudhankutty</li>
         </ul>
-      </section>
-
-      <section class="mb-4">
-        <h5>🛠 Tech Stack</h5>
-        <ul class="list-unstyled pl-3">
-          <li>• Backend: Django (Python)</li>
-          <li>• Frontend: HTML, CSS, Bootstrap 4.6</li>
-          <li>• Database: SQLite (default, for development)</li>
-          <li>• Django Admin, Django Messages Framework</li>
-        </ul>
-      </section>
-
-      <section>
-        <h5>📌 Project Management</h5>
-        <p>
-          We used Agile methodology with weekly iterations and task tracking using Trello.
-        </p>
-        <a href="https://trello.com/invite/b/686e2b4c901ef0a5cd293f61/ATTIfea069f3de442e18869a05bb6983898494E020FC/my-trello-board" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
-           🔗 View Trello Board
-        </a>
-      </section>
-    </div>
-
-    <div class="col-12 col-md-6 text-center mt-4 mt-md-0">
-      <img src="{% static 'images/about-skillswap.jpg' %}" alt="People learning and sharing skills" class="img-fluid rounded shadow" style="max-height: 400px; object-fit: cover;">
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{% static 'images/team_members.jpg' %}" alt="Team collaboration" class="img-fluid rounded shadow">
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<section class="cta text-white text-center py-5" style="background-color: #8bcfe7;">
+  <div class="container">
+    <h2 class="mb-3" data-aos="fade-up">✨ Keep Swapping. Keep Growing.</h2>
+    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+      At SkillSwap, we're not just building a platform — we're building a community where learning never stops.
+      Whether you're here to teach, learn, or both, thank you for being part of this journey.
+    </p>
+    {% if not user.is_authenticated %}
+      <a href="{% url 'register' %}" class="btn btn-primary btn-lg" data-aos="zoom-in" data-aos-delay="200">Join Now</a>
+    {% endif %}
+  </div>
+</section>
+
 {% endblock %}

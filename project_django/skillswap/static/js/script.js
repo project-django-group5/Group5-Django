@@ -30,3 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   setTimeout(() => body.classList.add('transition'), 100);
 });
+
+
+$(document).ready(function () {
+  $('#skillCarousel').carousel();
+});

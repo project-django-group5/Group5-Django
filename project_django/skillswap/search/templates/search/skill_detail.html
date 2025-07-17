@@ -75,23 +75,24 @@
               <small class="text-muted">on {{ skill.created|date:"F j, Y" }}</small>
             </div>
 
-            <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+            <div class="d-flex justify-content-end gap-2 mt-3 mt-md-0">
               {% if user.is_authenticated and user != skill.user and not has_reviewed %}
                 <a href="{% url 'leave_review' pk=skill.user.id skill_id=skill.id %}?next={{ request.get_full_path|urlencode }}"
-                   class="btn btn-outline-primary">
+                   class="btn btn-outline-primary mr-2">
                   ⭐ Leave a Review
                 </a>
-                <a href="{% url 'contact_form' skill.user.id %}" class="btn btn-outline-success">
-                    📧 Contact Me
-                </a>
               {% endif %}
-
-
+              <hr>
+              {% if user != skill.user %}
+              <a href="{% url 'contact_form' skill.user.id skill.id %}" class="btn btn-outline-success">
+                  📧 Contact {{ skill.user.username }}
+              </a>
+              {% endif %}
             </div>
           </div>
         </div>
 
-        <div class="card-footer bg-white text-right border-top-0">
+        <div class="card-footer text-right border-top-0">
           <a href="{% url next_page %}" class="btn btn-secondary">← Back</a>
         </div>
       </div>
