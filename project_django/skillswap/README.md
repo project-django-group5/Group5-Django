@@ -33,32 +33,53 @@ SkillSwap is a Django-based web platform where users can connect by offering or 
 * Signup / Login / Logout
 * Profile creation & editing (bio, profile picture optional)
 
-#### 2.📋 Skill Listings
+#### 2. 📋 Skill Listings
+
 * Post a skill to offer or request
 * Each skill includes:
-    * Title, category, description
-    * Availability (e.g., evenings/weekends)
-    * Location (optional)
-🔍 Search & Browse
+    * *Title, category, description*
+    * *Availability (e.g., evenings/weekends)*
+    * *Location (optional)*
+  
+#### 3. 🔍 Search & Browse
+
 * Browse all skills
 * Filter by:
-    * Skill type (offered/requested)
-    * Category (e.g., Arts, Tech, Language)
-✉️ Contact / Messaging
+    * *Skill type (offered/requested)*
+    * *Category (e.g., Arts, Tech, Language)*
+  
+#### 4. ✉️ Contact / Messaging
+
 * "Contact" button opens a simple form to send a message
-* Simulated inbox for communication
-⭐ Reviews & Ratings
+  
+#### 5. ⭐ Reviews & Ratings
+
 * After a session, users can leave:
-    * 1–5 star rating
-    * A short review
-🧰 Optional Features (Implemented)
-* Profile pictures
-* Admin dashboard
-* Skill categories/tags
+    * *1–5 star rating*
+    * *A short review*
+  
+#### 🧰 Optional Features (Implemented)
+* *Profile pictures*
+* *Admin dashboard*
 
-🛠 Tech Stack
-* Backend: Django (Python)
-* Frontend: HTML, CSS, Bootstrap 4.6
-* Database: SQLite (default, for development)
-    * Other: Django Admin, Django Messages Framework
 
+### 🛠 Tech Stack
+***
+* **Backend**: *Django (Python)*
+* **Frontend**: *HTML, CSS, Bootstrap 4.6*
+* **Database**: *SQLite (default, for development)*
+    * **Other**: *Django Admin*
+
+### 👥 Team Members
+***
+* Ayisha Ameer
+* Elaiyarani Soundararajan
+* Judith Soundarya Joseph
+* Kanimozhi Sangapillai
+* Sowmya Ayarottupura Velayudhankutty
+
+#### 📌 Project Management
+---
+    We used Agile methodology with weekly iterations and task tracking using Trello. 
+
+🔗 [*SkillSwap TrelloBoard*](https://trello.com/invite/b/686e2b4c901ef0a5cd293f61/ATTIfea069f3de442e18869a05bb6983898494E020FC/skillswap)
