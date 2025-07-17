@@ -543,3 +543,53 @@ footer {
 .hover-darken:hover {
   filter: brightness(90%);
 }
+
+
+.star-rating {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  display: inline-flex;
+  gap: 5px;
+}
+
+.star-rating label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star-rating input:checked~label,
+.star-rating label:hover,
+.star-rating label:hover~label {
+  color: gold;
+}
+.static-star-rating {
+  display: inline-block;
+  direction: ltr;
+  font-size: 0;
+}
+
+.static-star-rating .star {
+  font-size: 2rem;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  color: lightgray;
+  position: relative;
+}
+
+.static-star-rating .star.full {
+  color: gold;
+}
+
+.static-star-rating .star.half::before {
+  content: '★';
+  color: gold;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
