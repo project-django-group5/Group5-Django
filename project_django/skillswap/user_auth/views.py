@@ -8,6 +8,7 @@ from django.db.models import Avg, Count
 from skill.models import Skill
 from review.models import Review
 
+
 # def index(request):
 #     return render(request,'user_auth/index.html')
 
