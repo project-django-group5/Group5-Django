@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/9445296b-c348-49ca-97e0-a0f2e54b33cf
+
 # About SkillSwap
 
 SkillSwap is a Django-based web platform where users can connect by offering or requesting skills — from music lessons and cooking to tutoring or learning a new language. The platform facilitates user interactions, messaging, and reviews, simulating a community-driven skill-sharing marketplace.
