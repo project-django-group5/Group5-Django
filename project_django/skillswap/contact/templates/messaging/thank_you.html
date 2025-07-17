@@ -16,8 +16,8 @@
           <p class="lead mb-4">
             Your message has been sent successfully. The recipient will get back to you as soon as possible.
           </p>
-          <a href="{% url 'skill_list' %}" class="btn btn-outline-primary px-4">
-            🔙 Back to Skill Listings
+            <a href="{% url 'skill_detail' skill.id %}" class="btn btn-outline-secondary">
+              <i class="bi bi-arrow-left"></i> Back
           </a>
         </div>
       </div>

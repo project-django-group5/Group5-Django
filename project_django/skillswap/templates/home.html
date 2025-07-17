@@ -6,7 +6,7 @@
 {% block content %}
 <!-- ------------carousel------- -->
 <section class="mb-5 mt-5">
-  <div id="skillCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
+  <div id="skillCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2500">
     <ol class="carousel-indicators">
       <li data-target="#skillCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#skillCarousel" data-slide-to="1"></li>
@@ -15,7 +15,7 @@
 
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="{% static 'images/carousel_img1.jpg' %}" alt="Find Skills That Inspire You" class="carousel_img">
+        <img src="{% static 'images/carousel_img1.jpg' %}" class="d-block w-100" alt="Find Skills That Inspire You" class="carousel_img">
         <div class="overlay"></div>
         <div class="carousel-content">
           <h2 class="display-4">Find Skills That Inspire You</h2>
@@ -61,8 +61,6 @@
     </a>
   </div>
 </section>
-<!-- ---------------------------------------- -->
-
 
 <section class="section container">
   <div class="row align-items-center">
@@ -115,10 +113,19 @@
 
 <section class="cta bg-primary text-white text-center py-5" data-aos="zoom-in" data-aos-delay="400">
   <h2>🚀 Ready to get started?</h2>
-  <p class="lead">👉 <strong><a href="{% url 'register' %}" class="text-white font-weight-bold">Sign Up Now</a></strong>
-  or <strong><a href="{% url 'login' %}" class="text-white font-weight-bold">Log In</a></strong>
-  to join the SkillSwap community
-  </p>
+  {% if user.is_authenticated %}
+    <p class="lead">
+      👉 <strong><a href="{% url 'skill_add' %}" class="text-white font-weight-bold">Share your skills on SkillSwap</a></strong>,
+      or <strong><a href="{% url 'skill_list' %}" class="text-white font-weight-bold">discover skill-sharing opportunities</a></strong>
+      with learners and experts from around the world.
+    </p>
+  {% else %}
+    <p class="lead">
+      👉 <strong><a href="{% url 'register' %}" class="text-white font-weight-bold">Join SkillSwap for free</a></strong> and start
+      sharing what you know — or <strong><a href="{% url 'login' %}" class="text-white font-weight-bold">log in</a></strong>
+      to explore new skills, connect with passionate people, and grow through community learning.
+    </p>
+  {% endif %}
 </section>
 
 {% endblock %}

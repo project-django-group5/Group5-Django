@@ -77,14 +77,10 @@
       At SkillSwap, we're not just building a platform — we're building a community where learning never stops.
       Whether you're here to teach, learn, or both, thank you for being part of this journey.
     </p>
-
+    {% if not user.is_authenticated %}
     <a href="{% url 'register' %}" class="btn btn-primary btn-lg" data-aos="zoom-in" data-aos-delay="200">Join Now</a>
-    
+    {% endif %}
   </div>
 </section>
-
-
-
-
     
 {% endblock %}
