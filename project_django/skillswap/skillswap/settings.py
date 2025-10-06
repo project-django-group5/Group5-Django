@@ -9,24 +9,36 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os, dj_database_url
 from pathlib import Path
-
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env") 
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fpyf@tn#ewnub8j+79e2yhr+3pz@7i_i1*7z^!=j9g_dobn_5l'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-unsafe")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+ALLOWED_HOSTS = ["localhost","127.0.0.1"]
+#ALLOWED_HOSTS = []
+AZURE_HOST = os.environ.get("WEBSITE_HOSTNAME")
+#ALLOWED_HOSTS = [AZURE_HOST] if AZURE_HOST else ["localhost", "127.0.0.1"]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_OUTER = [f"https://{AZURE_HOST}"] if AZURE_HOST else []
+CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_OUTER
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+# Optionally force HTTPS in prod:
+SECURE_SSL_REDIRECT = not DEBUG
 
 # Application definition
 
@@ -79,10 +91,11 @@ WSGI_APPLICATION = 'skillswap.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.parse(
+        os.environ.get("DATABASE_URL", f"sqlite:///{BASE_DIR/'db.sqlite3'}"),
+        conn_max_age=600,  # keep connections open (good for PaaS)
+        ssl_require=False,  # set True if your PG provider requires SSL
+    )
 }
 
 PASSWORD_HASHERS = [
@@ -135,11 +148,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
-
+# WhiteNoise hashed/compressed storage (optional but recommended)
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -152,3 +166,12 @@ MEDIA_URL = "media/"
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile_edit'
 LOGOUT_REDIRECT_URL = 'login'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {"class": "logging.StreamHandler"},
+    },
+    "root": {"handlers": ["console"], "level": "INFO"},
+}
