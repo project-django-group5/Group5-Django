@@ -5,11 +5,11 @@ Django settings for skillswap project.
 import os
 from pathlib import Path
 import dj_database_url
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 # ---- Paths / dotenv (local only) ----
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")  # ignored on Azure; App Settings provide env vars
+#load_dotenv(BASE_DIR / ".env")  # ignored on Azure; App Settings provide env vars
 SECRET_KEY = "2hks!+$p!(ig6b*au96k*r(#5xu2dobkwz!6k+q7&kll6lpdd7"
 # ---- Core env-driven config ----
 #SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-unsafe")
@@ -17,8 +17,8 @@ SECRET_KEY = "2hks!+$p!(ig6b*au96k*r(#5xu2dobkwz!6k+q7&kll6lpdd7"
 DEBUG = True
 
 # Azure provides this in production; fallback for local dev
-AZURE_HOST = os.environ.get("WEBSITE_HOSTNAME")
-ALLOWED_HOSTS = [AZURE_HOST] if AZURE_HOST else ["localhost", "127.0.0.1"]
+#AZURE_HOST = os.environ.get("WEBSITE_HOSTNAME")
+ALLOWED_HOSTS =  ["localhost", "127.0.0.1", "skillswap-demo-ehc6drhremashrgx.westeurope-01.azurewebsites.net/"]
 
 # Trust Azure's HTTPS header and secure cookies only in prod
 #SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -27,7 +27,7 @@ ALLOWED_HOSTS = [AZURE_HOST] if AZURE_HOST else ["localhost", "127.0.0.1"]
 #CSRF_COOKIE_SECURE = not DEBUG
 
 # CSRF must include your Azure hostname when deployed
-CSRF_TRUSTED_ORIGINS = [f"https://{AZURE_HOST}"] if AZURE_HOST else []
+CSRF_TRUSTED_ORIGINS = ["https://skillswap-demo-ehc6drhremashrgx.westeurope-01.azurewebsites.net/"]
 
 # ---- Apps ----
 INSTALLED_APPS = [
@@ -78,11 +78,10 @@ WSGI_APPLICATION = "skillswap.wsgi.application"
 
 # ---- Database (Postgres via DATABASE_URL in Azure; SQLite locally) ----
 DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ.get("DATABASE_URL", f"sqlite:///{BASE_DIR/'db.sqlite3'}"),
-        conn_max_age=600,
-        ssl_require=False,  # set True if your PG provider requires SSL
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # ---- Password hashers  ----
@@ -111,7 +110,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -122,12 +121,12 @@ LOGIN_REDIRECT_URL = "profile_edit"
 LOGOUT_REDIRECT_URL = "login"
 
 # ---- Logging to Azure Log Stream ----
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {"console": {"class": "logging.StreamHandler"}},
-    "root": {"handlers": ["console"], "level": "INFO"},
-}
+# #LOGGING = {
+#  #   "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {"console": {"class": "logging.StreamHandler"}},
+#     "root": {"handlers": ["console"], "level": "INFO"},
+# }
 
 # ---- Default PK ----
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
